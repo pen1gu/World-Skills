@@ -2,13 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="980e9302-3f14-47ff-9b24-aef8f86d3690" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../2020전국_강원/.idea/2020전국_강원.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../2020전국_강원/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../2020전국_강원/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../2020전국_강원/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/SeatSelectionFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/BaseFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/BaseFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/CalendarFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/CalendarFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/FaresInqueryFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/FaresInqueryFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/RaceTimeInqueryFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/RaceTimeInqueryFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/ReservationFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/ReservationFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/TrainScheduleFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/TrainScheduleFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/BaseFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/BaseFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/CalendarFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/CalendarFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/FaresInqueryFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/FaresInqueryFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/RaceTimeInqueryFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/RaceTimeInqueryFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/ReservationFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/ReservationFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/TrainScheduleFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/TrainScheduleFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +50,7 @@
       <option name="presentableId" value="Default" />
       <updated>1594795963571</updated>
       <workItem from="1594795968103" duration="12000" />
+      <workItem from="1594903109485" duration="206000" />
     </task>
     <servers />
   </component>

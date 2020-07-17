@@ -1,16 +1,10 @@
 package frame;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.sql.PreparedStatement;
+import javax.swing.*;
+import java.awt.*;
 import java.sql.ResultSet;
-
-import javax.swing.BorderFactory;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import java.util.HashMap;
+import java.util.logging.Logger;
 
 public class ReservationFrame extends BaseFrame {
 
@@ -20,7 +14,10 @@ public class ReservationFrame extends BaseFrame {
     JComboBox<Integer>[] cbPeople_info = new JComboBox[3];
 
     JTextField tfDate = createComponenet(new JTextField(), 140, 30);
+    HashMap<String, Integer> key = new HashMap<>();
+
     static int width = 600, height = 330;
+    private final static Logger log = Logger.getGlobal();
 
     public ReservationFrame() {
         super(width, height, "승차권 예약");
@@ -77,16 +74,20 @@ public class ReservationFrame extends BaseFrame {
             return;
         }
 
-        int cnt = 1;
+        int cnt = 0;
         for (int i = 0; i < cbPeople_info.length; i++) {
-            if (cbPeople_info[i].getSelectedIndex() == 0)
+            if (cbPeople_info[i].getSelectedIndex() == 0) {
                 cnt++;
+                log.severe(cnt + "");
+            }
         }
 
         if (cnt == 3) {
             errorMessage("승객 인원을 1명 이상 선택해주세요.");
             return;
         }
+
+        openFrame(new TrainScheduleFrame(ReservationFrame.this));
     }
 
     public void setStationData() {
@@ -94,6 +95,7 @@ public class ReservationFrame extends BaseFrame {
             while (rs.next()) {
                 cbStartStation.addItem(rs.getString(2));
                 cbArriveStation.addItem(rs.getString(2));
+                key.put(rs.getString(2), rs.getInt(1));
             }
         } catch (Exception e) {
             e.printStackTrace();

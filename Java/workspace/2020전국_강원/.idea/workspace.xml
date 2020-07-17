@@ -20,21 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0e27a63-4fe9-41b1-9a7d-50504c9cd761" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/2020전국_강원.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../2020전국_강원_1/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../2020전국_강원_1/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../2020전국_강원_1/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../2020전국_강원_1/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../2020전국_강원_1/2020전국_강원_1.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../2020전국_강원_1/db/db.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../2020전국_강원_1/db/src/Setting.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../2020전국_충남/2020전국_충남.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2020전국_충남/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_충남/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2020전국_충남/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_충남/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2020전국_충남/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_충남/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/BaseFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/BaseFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/CalendarFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/CalendarFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/BaseFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/BaseFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/CalendarFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/CalendarFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +68,7 @@
       <workItem from="1594795372926" duration="8000" />
       <workItem from="1594795816150" duration="133000" />
       <workItem from="1594796108864" duration="1763000" />
+      <workItem from="1594815769603" duration="33000" />
     </task>
     <servers />
   </component>

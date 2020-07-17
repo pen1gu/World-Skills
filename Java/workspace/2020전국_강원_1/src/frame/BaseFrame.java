@@ -1,21 +1,11 @@
 package frame;
 
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.Insets;
-import java.awt.Toolkit;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 @SuppressWarnings("serial")
 public class BaseFrame extends JFrame {
@@ -67,7 +57,7 @@ public class BaseFrame extends JFrame {
         return button;
     }
 
-    public static JButton createButtonWithMargin(String text, ActionListener action) {
+    public static JButton createButtonWithOutMargin(String text, ActionListener action) {
         JButton button = new JButton(text);
         button.addActionListener(action);
         button.setMargin(new Insets(0, 0, 0, 0));
