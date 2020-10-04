@@ -19,17 +19,6 @@ import javax.swing.JOptionPane;
 
 @SuppressWarnings("serial")
 public class BaseFrame extends JFrame{
-	static Connection connection;
-	static Statement statement;
-	
-	static {
-		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/train?serverTimezone=UTC&allowLoadLocalInfile=true","user","1234");
-			statement = connection.createStatement();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public BaseFrame(int width, int height, String title) {
 		setSize(width,height);
@@ -39,11 +28,11 @@ public class BaseFrame extends JFrame{
 	}
 	
 	public static void errorMessage(String msg) {
-		JOptionPane.showInternalMessageDialog(null, msg,"¸Þ¼¼Áö",JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showInternalMessageDialog(null, msg,"ë©”ì‹œì§€",JOptionPane.ERROR_MESSAGE);
 	}
 	
 	public static void informationMessage(String msg) {
-		JOptionPane.showInternalMessageDialog(null, msg,"¸Þ¼¼Áö",JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showInternalMessageDialog(null, msg,"ë©”ì‹œì§€",JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	public static JLabel createLabel(JLabel label, Font font) {
