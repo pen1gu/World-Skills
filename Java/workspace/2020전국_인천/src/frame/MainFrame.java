@@ -23,7 +23,7 @@ public class MainFrame extends BaseFrame {
     JPanel inner_scroll = createComponent(new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0)), 590, 400);
 
     DefaultTableModel model = new DefaultTableModel("상품번호,상품 카테고리,상품 이름,상품 가격,상품 재고,상품 설명".split(","), 0);
-    JTable tb_product_data = new JTable(model);
+    JTable tb_product_data = createComponent(new JTable(model),width-250,140);
 
     MainFrame() {
         super("상품목록", width, height);
@@ -72,6 +72,8 @@ public class MainFrame extends BaseFrame {
         centerpanel.add(jScrollPane);
         centerpanel.add(center_south, BorderLayout.SOUTH);
 
+        JScrollPane tb_scroll = createComponent(new JScrollPane(tb_product_data), width-240,140);
+        center_south.add(tb_scroll);
 
         add(centerpanel);
         add(westpanel, BorderLayout.WEST);
@@ -86,18 +88,38 @@ public class MainFrame extends BaseFrame {
                 super.mousePressed(e);
                 current_category = label.getText();
             }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                label.setForeground(Color.red);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                label.setForeground(Color.black);
+            }
         });
     }
 
     public void clickSearch() {
-        try (PreparedStatement pst = connection.prepareStatement("select * from product where c_no = ?")) {
+        inner_scroll.removeAll();
+
+        try (PreparedStatement pst = connection.prepareStatement("select * from product where c_no = ? and p_price >= ? and p_price <= ?")) {
             pst.setObject(1, category_num_map.get(current_category));
+            pst.setObject(2, !tfMinPrice.getText().isEmpty() ? tfMinPrice.getText() : 0);
+            pst.setObject(3, !tfMaxPrice.getText().isEmpty() ? tfMaxPrice.getText() : Integer.MAX_VALUE);
 
             ResultSet rs = pst.executeQuery();
 
             int cnt = 0;
+            Object[] objects;
             while (rs.next()) {
                 inner_scroll.add(new ProductPanel(rs.getString(3)));
+                model.addRow(new Object[]{
+                        rs.getObject(1), rs.getObject(2), rs.getObject(3), rs.getObject(4), rs.getObject(5), rs.getObject(6)
+                });
                 cnt++;
             }
             int rows = cnt / 3;
@@ -105,15 +127,13 @@ public class MainFrame extends BaseFrame {
             if (cnt % 3 != 0) {
                 rows++;
             }
-            System.out.println(rows);
+
 
             inner_scroll.setPreferredSize(new Dimension(610, rows * 200));
             inner_scroll.revalidate();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        changeTable();
     }
 
     public static void main(String[] args) {
@@ -124,7 +144,7 @@ public class MainFrame extends BaseFrame {
         ProductPanel(String name) {
             setLayout(new BorderLayout());
             setPreferredSize(new Dimension(200, 190));
-            add(createComponent(new JLabel(getImage("./datafiles/" + name + ".txt", 200, 170)), 200, 170));
+            add(createComponent(new JLabel(getImage("./datafiles/이미지폴더/" + name + ".jpg", 200, 170)), 200, 170));
             add(createComponent(new JLabel(name, 0), 200, 20), BorderLayout.SOUTH);
             setBorder(new LineBorder(Color.black));
         }
@@ -135,10 +155,10 @@ public class MainFrame extends BaseFrame {
     }
 
     public void changeTable() {
-        try (PreparedStatement pst = connection.prepareStatement("select * from")) {
-
+        try (PreparedStatement pst = connection.prepareStatement("select * from product where ")) {
+//            pst.setObject();
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 }
