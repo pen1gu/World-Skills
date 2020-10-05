@@ -150,7 +150,7 @@ public class MainFrame extends BaseFrame {
         }
 
         public void clickImage() {
-
+//`   fasdfhjkasfjklsahfjlkashjlfkhasjkf
         }
     }
 
