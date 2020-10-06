@@ -1,0 +1,6 @@
+﻿c_no	c_title	c_content	m_no	anonymous	cl_no
+1	불평1	내용1	1	1	1
+2	불평2	내용2	2	1	2
+3	불평3	내용3	2	1	2
+4	불평4	내용4	4	2	1
+5	불평5	내용5	5	2	1

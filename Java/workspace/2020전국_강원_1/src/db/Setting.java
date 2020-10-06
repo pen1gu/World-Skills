@@ -92,7 +92,7 @@ public class Setting {
         String[] list = "user,station,route,timetable,fare,seat".split(",");
         for (int i = 0; i < list.length; i++) {
             execute("load data local infile './/지급자료/" + list[i] + ".txt' into table " + list[i]
-                    + " fields terminated  by '\t' lines terminated  by '\n' ignore 1 lines");
+                    + " fields terminated  by '\t' lines terminated  by '\r\n' ignore 1 lines");
         }
 
         JOptionPane.showInternalMessageDialog(null, "완성");

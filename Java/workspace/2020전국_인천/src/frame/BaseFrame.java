@@ -24,8 +24,8 @@ public class BaseFrame extends JFrame {
         }
     }
 
-    BaseFrame(String title, int width, int height){
-        setSize(width,height);
+    BaseFrame(String title, int width, int height) {
+        setSize(width, height);
         setTitle(title);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(2);

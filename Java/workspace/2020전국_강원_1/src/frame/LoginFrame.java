@@ -1,15 +1,9 @@
 package frame;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 public class LoginFrame extends BaseFrame {
 
@@ -51,7 +45,7 @@ public class LoginFrame extends BaseFrame {
 
             if (rs.next()) {
                 informationMessage(rs.getString(4) + "님 환영합니다.");
-                openFrame(new MainFrame());
+//                openFrame(new MainFrame());
             } else {
                 errorMessage("ID 또는 PW를 확인해주세요.");
             }

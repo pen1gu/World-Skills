@@ -20,10 +20,107 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0e27a63-4fe9-41b1-9a7d-50504c9cd761" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/BaseFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/BaseFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/CalendarFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/CalendarFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/BaseFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/BaseFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/CalendarFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/src/frame/CalendarFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/comment.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/community.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/image/main/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/image/main/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/image/main/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/image/학교.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/member.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/news.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/notice.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/reply.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/reply_result.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/10.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/11.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/12.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/13.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/14.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/15.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/16.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/17.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/18.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/19.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/20.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/21.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/22.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/23.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/24.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/25.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/26.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/27.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/28.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/29.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/30.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/31.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/32.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/33.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/34.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/35.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/36.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/37.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/38.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/39.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/40.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/41.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/42.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/43.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/44.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/45.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/46.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/47.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/48.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/49.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/50.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/51.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/52.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/53.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/54.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/55.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/56.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/57.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/58.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/59.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/60.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/61.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/62.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/63.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/64.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/65.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/66.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/67.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/68.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/69.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/70.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/71.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/72.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/73.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/74.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/75.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/76.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/77.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/78.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/2과제 지급자료/싸인/9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/src/frame/BambooGrooveFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/src/frame/BaseFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/src/frame/LoginFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/src/frame/MainFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/src/frame/NewsFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/src/frame/ReplyFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2020전국_서울/모델링.mwb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/db/Setting.class" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/db/Setting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/TrainScheduleFrame$TrainDataColumn.class" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/out/production/2020전국_강원_1/frame/TrainScheduleFrame$TrainDataColumn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_강원_1/src/db/Setting.java" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_강원_1/src/db/Setting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_서울/2020전국_서울.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_서울/2020전국_서울.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2020전국_서울/src/db/Setting.java" beforeDir="false" afterPath="$PROJECT_DIR$/../2020전국_서울/src/db/Setting.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +166,7 @@
       <workItem from="1594795816150" duration="133000" />
       <workItem from="1594796108864" duration="1763000" />
       <workItem from="1594815769603" duration="33000" />
+      <workItem from="1595238141071" duration="3000" />
     </task>
     <servers />
   </component>
