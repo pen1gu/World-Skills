@@ -21,6 +21,7 @@ public class Setting {
 
     public static void main(String[] args) {
         execute("drop database if exists `market`");
+
         execute("CREATE SCHEMA IF NOT EXISTS `market` DEFAULT CHARACTER SET utf8 ;");
         execute("CREATE TABLE IF NOT EXISTS `market`.`user` (\n" +
                 "  `u_no` INT(11) NOT NULL AUTO_INCREMENT,\n" +
@@ -77,7 +78,9 @@ public class Setting {
                 "    ON UPDATE CASCADE)\n" +
                 "ENGINE = InnoDB\n" +
                 "DEFAULT CHARACTER SET = utf8;");
+
         execute("use market");
+
         execute("drop user if exists 'user'@'%'");
         execute("create user 'user'@'%' identified by '1234'");
         execute("grant select, insert, delete, update on market.* to 'user'@'%'");
