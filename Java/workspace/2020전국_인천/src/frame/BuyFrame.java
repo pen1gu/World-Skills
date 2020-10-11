@@ -5,7 +5,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class BuyFrame extends BaseFrame {
-
+//개발 중단
     static int width = 600, height = 400;
 
     JTextField tfProductName = createComponent(new JTextField(), 230, 20, 150, 30);
@@ -48,7 +48,9 @@ public class BuyFrame extends BaseFrame {
         centerpanel.add(taProduct);
 
         for (int i = 0; i < cnt; i++) {
-            southpanel.add(new MainFrame.ProductPanel(product_list.get(i), 80, 60));
+            JLabel jl;
+//            southpanel.add(jl = createComponent(new JLabel(getImage("./datafiles/이미지폴더/"+product_name_list.get(i)+".txt", 80, 60)), 80, 60));
+//            jl.addMouseListener(new BuyFrame(product_name_list.get(i), ));
         }
         add(centerpanel);
     }

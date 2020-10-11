@@ -47,9 +47,9 @@ public class SignUpFrame extends BaseFrame {
     }
 
     public void clickSubmit() {
-        boolean check = false;
-        for (int i = 0; i < 5; i++) if (!textfield[i].getText().isEmpty()) check = true;
-        for (int i = 0; i < 2; i++) if (!passwordFields[i].getText().isEmpty()) check = true;
+        boolean check = true;
+        for (int i = 0; i < 5; i++) if (textfield[i].getText().isEmpty()) check = false;
+        for (int i = 0; i < 2; i++) if (passwordFields[i].getText().isEmpty()) check = false;
 
         if (check == false) {
             errorMessage("빈칸이 있습니다.");

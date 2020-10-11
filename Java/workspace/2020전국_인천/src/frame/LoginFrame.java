@@ -36,6 +36,7 @@ public class LoginFrame extends BaseFrame {
                 openFrame(new SignUpFrame());
             }
         });
+
         JPanel southpanel = createComponent(new JPanel(new FlowLayout(FlowLayout.RIGHT)),width,30);
         southpanel.add(lbSignUp);
 

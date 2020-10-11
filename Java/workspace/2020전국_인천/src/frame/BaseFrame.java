@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BaseFrame extends JFrame {
     static Connection connection;
