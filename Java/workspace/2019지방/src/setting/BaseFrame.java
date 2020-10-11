@@ -1,9 +1,14 @@
-package frame;
+package setting;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.tools.Tool;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class BaseFrame extends JFrame {
     static Connection connection;
@@ -11,32 +16,38 @@ public class BaseFrame extends JFrame {
 
     static String userName;
     static int userNo;
+    static int userPoint;
+    static String userGrade;
+
+    static DefaultTableCellRenderer centerRender;
 
     static {
-        userNo = 1;
-        userName = "장지용";
-
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/market?serverTimezone=UTC", "user", "1234");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/coffee?serverTimezone=UTC", "user", "1234");
             statement = connection.createStatement();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+        userName = "이기민";
+        userNo = 1;
+        userGrade = "일반";
+        userPoint = 14210;
     }
 
-    BaseFrame(String title, int width, int height) {
+    public BaseFrame(int width, int height, String title) {
         setSize(width, height);
         setTitle(title);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(2);
     }
 
-    public static void errorMessage(String text) {
-        JOptionPane.showMessageDialog(null, text, "메시지", JOptionPane.ERROR_MESSAGE);
+    public static void errorMessage(String msg) {
+        JOptionPane.showMessageDialog(null, msg, "메시지", JOptionPane.ERROR_MESSAGE);
     }
 
-    public static void informationMessage(String text) {
-        JOptionPane.showMessageDialog(null, text, "메시지", JOptionPane.INFORMATION_MESSAGE);
+    public static void informationMessage(String msg) {
+        JOptionPane.showMessageDialog(null, msg, "메시지", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static JLabel createLabel(JLabel label, Font font) {
@@ -75,5 +86,4 @@ public class BaseFrame extends JFrame {
         dispose();
         frame.setVisible(true);
     }
-
 }
