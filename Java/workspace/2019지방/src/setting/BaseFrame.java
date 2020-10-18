@@ -19,7 +19,7 @@ public class BaseFrame extends JFrame {
     static int userPoint;
     static String userGrade;
 
-    static DefaultTableCellRenderer centerRender;
+    static DefaultTableCellRenderer centerRenderer;
 
     static {
         try {
@@ -29,9 +29,9 @@ public class BaseFrame extends JFrame {
             throwables.printStackTrace();
         }
 
-        userName = "이기민";
+        userName = "ì�´ê¸°ë¯¼";
         userNo = 1;
-        userGrade = "일반";
+        userGrade = "ì�¼ë°˜";
         userPoint = 14210;
     }
 
@@ -43,11 +43,11 @@ public class BaseFrame extends JFrame {
     }
 
     public static void errorMessage(String msg) {
-        JOptionPane.showMessageDialog(null, msg, "메시지", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, msg, "ë©”ì‹œì§€", JOptionPane.ERROR_MESSAGE);
     }
 
     public static void informationMessage(String msg) {
-        JOptionPane.showMessageDialog(null, msg, "메시지", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, msg, "ë©”ì‹œì§€", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static JLabel createLabel(JLabel label, Font font) {

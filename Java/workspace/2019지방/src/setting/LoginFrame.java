@@ -43,6 +43,7 @@ public class LoginFrame extends BaseFrame {
 
         if ("admin".equals(idField.getText()) && "1234".equals(pwField.getText())){
             openFrame(new AdminFrame());
+            return;
         }
 
         try (PreparedStatement pst = connection.prepareStatement("select * from user where u_id = ? and u_pw = ?")) {

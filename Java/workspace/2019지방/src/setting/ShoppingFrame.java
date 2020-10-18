@@ -130,4 +130,8 @@ public class ShoppingFrame extends BaseFrame {
         }
         return amount;
     }
+
+    public static void main(String[] args) {
+        new ShoppingFrame().setVisible(true);
+    }
 }
