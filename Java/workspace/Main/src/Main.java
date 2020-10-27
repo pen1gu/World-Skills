@@ -12,8 +12,10 @@ public class Main implements ExceptionCheck {
 				settingText(); // 기본 문구
 				switch (strScanner.nextLine()) {
 				case "1": { // 자동차 개수 설정
-					System.out.print("자동차 개수를 입력하세요: ");
-					cnt = checkNumberFormatting(strScanner.nextLine());
+					System.out.print("자동차 개수를 입력하세요(3보다 크게 입력할 시 3대): ");
+
+					int checkCnt = checkNumberFormatting(strScanner.nextLine());
+					cnt = checkCnt > 3 ? 3 : checkCnt;
 					cars = new Car[cnt]; // 자동차 개수
 					for (int i = 0; i < cnt; i++) {
 						System.out.print("자동차 이름을 입력해주세요: ");
