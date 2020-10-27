@@ -1,55 +1,75 @@
 
-public class Car extends Thread {
-	private String carName; // 자동차 이름
-	private int carSpeed; // 자동차 속력
-	private int carDistance; // 자동차 이동거리
-	private int tire; // 타이어
-	private int moveTime; // 이동시간
-	private int price; // 비용
+public class Car extends CarEssetialFunction {
+	final static int CAR_SPEED = 20;
 
-	public Car(String carName, int carSpeed, int carDistance, int tire, int moveTime, int price) {
+	private String carName; // 자동차 이름 param
+	private int carDistance; // 자동차 이동거리
+	private int tireCapacity; // 타이어
+	private int moveTime; // 이동시간
+	private int totalPrice; // 비용
+	private int totalChangeCount;// 최종 변경 횟수
+	private String tireName;// 타이어 이름
+	private int totalBreakCount;// 최종정지 횟수
+
+	public Car(String carName) {
 		this.carName = carName;
-		this.carSpeed = carSpeed;
-		this.carDistance = carDistance;
-		this.tire = tire;
-		this.moveTime = moveTime;
-		this.price = price;
+		moveTime = 0;
+		tireCapacity = 100;
+		carDistance = 0;
+		totalPrice = 0;
+		totalChangeCount = 0;
+		totalBreakCount = 0;
 	}
 
-	public void carMove() { // 기본적으로 자동차가 움직이는 동작
+	@Override
+	public void carMove() {
 		if ((int) (Math.random() * 5 + 1) == 1) {
 			carBlocked();
+			return;
 		}
 
-		if (tire <= 0) {
+		if (tireCapacity <= 0) {
 			changeTire((int) (Math.random() * 4 + 1));
+			return;
 		}
 
-		moveTime += 1;
-		carDistance += 20;
-		tire -= 20;
+		if (carDistance <= CAR_SPEED) {
+			carDistance = 0;
+		}
 
-//		try {
-//			Thread.sleep(1000);
-//			System.out.println("실행중입니다");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		System.out.println("현재 남은 이동거리: " + carDistance);
+		moveTime++;
+		carDistance -= CAR_SPEED;
+		tireCapacity -= CAR_SPEED;
+
+//			try {
+//				Thread.sleep(1000);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
 
 	}
 
 	public void carBlocked() { // 길이 막혔을 시
-		System.out.println("길이 막혔습니다.");
+		System.out.println("자동차가 너무 많습니다. 도착 시간까지 지연됩니다.");
 //		try {
 //			Thread.sleep(2000);
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
 		moveTime += 2;
+		totalBreakCount++;
 	}
 
 	public void changeTire(int num) { // 랜덤값을 받아서 타이어 변경
 		System.out.println("바퀴를 바꿉니다.");
+		
+//		try {
+//			Thread.sleep(5000);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
 		try {
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,29 +80,35 @@ public class Car extends Thread {
 		case 1: {
 			cost = 30000;
 			distance = 40;
+			tireName = "미쉐린 타이어";
 			break;
 		}
 		case 2: {
 			cost = 50000;
 			distance = 60;
+			tireName = "콘티넨탈 타이어";
 			break;
 		}
 		case 3: {
 			cost = 80000;
 			distance = 80;
+			tireName = "금호 타이어";
 			break;
 		}
 		case 4: {
 			cost = 120000;
 			distance = 100;
+			tireName = "브릿지스톤 타이어";
 			break;
 		}
 		default:
 			throw new IllegalArgumentException("error");
 		}
-
-		price += cost;
-		tire = distance;
+		System.out.println(tireName + "으로(로) 변경되었습니다.");
+		totalPrice += cost;
+		tireCapacity = distance;
+		totalChangeCount++;
+		moveTime += 5;
 	}
 
 	public String getCarName() {
@@ -93,14 +119,6 @@ public class Car extends Thread {
 		this.carName = carName;
 	}
 
-	public int getCarSpeed() {
-		return carSpeed;
-	}
-
-	public void setCarSpeed(int carSpeed) {
-		this.carSpeed = carSpeed;
-	}
-
 	public int getCarDistance() {
 		return carDistance;
 	}
@@ -109,12 +127,12 @@ public class Car extends Thread {
 		this.carDistance = carDistance;
 	}
 
-	public int getTire() {
-		return tire;
+	public int getTireCapacity() {
+		return tireCapacity;
 	}
 
-	public void setTire(int tire) {
-		this.tire = tire;
+	public void setTire(int tireCapacity) {
+		this.tireCapacity = tireCapacity;
 	}
 
 	public int getMoveTime() {
@@ -125,11 +143,36 @@ public class Car extends Thread {
 		this.moveTime = moveTime;
 	}
 
-	public int getPrice() {
-		return price;
+	public int getTotalPrice() {
+		return totalPrice;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
 	}
+
+	public int getTotalChangeCount() {
+		return totalChangeCount;
+	}
+
+	public void setTotalChangeCount(int totalChangeCount) {
+		this.totalChangeCount = totalChangeCount;
+	}
+
+	public String getTireName() {
+		return tireName;
+	}
+
+	public void setTireName(String tireName) {
+		this.tireName = tireName;
+	}
+
+	public int getTotalBreakCount() {
+		return totalBreakCount;
+	}
+
+	public void setTotalBreakCount(int totalBreakCount) {
+		this.totalBreakCount = totalBreakCount;
+	}
+
 }
