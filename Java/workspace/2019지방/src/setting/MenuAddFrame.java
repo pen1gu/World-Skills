@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 
 import javax.swing.JPanel;
@@ -62,10 +63,11 @@ public class MenuAddFrame extends BaseFrame {
 
 				pst.execute();
 
-				Files.copy(Paths.get(menuPanel.path), Paths.get("./DateFiles/이미지/" + menuName + ".jpg"));
+				Files.copy(Paths.get(menuPanel.path), Paths.get("./DataFiles/이미지/" + menuName + ".jpg"),
+						StandardCopyOption.REPLACE_EXISTING);
 
 				informationMessage("메뉴가 등록되었습니다.");
-			} catch (SQLException e1) { 
+			} catch (SQLException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {
 				e1.printStackTrace();

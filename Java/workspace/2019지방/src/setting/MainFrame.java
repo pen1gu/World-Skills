@@ -22,7 +22,7 @@ public class MainFrame extends BaseFrame {
     JTextField tfAmount = createComponent(new JTextField(), 175, 140, 130, 25);
     JLabel lbUserInfo = createLabel(new JLabel("", 2), new Font("맑은고딕", 1, 13));
 
-    JPanel detailPanel = createComponent(new JPanel(new BorderLayout()), 0, 130, 310, 210);
+    JPanel detailPanel = createComponent(new JPanel(new BorderLayout()),  310, 210);
 
     MainFrame() {
         super(700, 600, "STARBOX");
@@ -44,7 +44,7 @@ public class MainFrame extends BaseFrame {
             westPanel.add(createComponent(createButtonWithOutMargin(text, e -> clickGroup(text)), 55, 35));
         }
 
-        JScrollPane jScrollPane = createComponent(new JScrollPane(menuPanel), 580, 480);
+        JScrollPane jScrollPane = createComponent(new JScrollPane(menuPanel), 590, 480);
 
 
         JPanel detailCenter = createComponent(new JPanel(null), 310, 170);

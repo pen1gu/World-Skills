@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 public class Setting {
 
     static Connection connection;
@@ -82,7 +84,7 @@ public class Setting {
                     " fields terminated by '\t' lines terminated by '\n' ignore 1 lines");
         }
 
-        System.out.println("ì™„ì„±");
+        JOptionPane.showMessageDialog(null, "¿Ï·áµÇ¾ú½À´Ï´Ù.");
     }
 
     public static void execute(String sql) {
