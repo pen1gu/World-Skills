@@ -39,7 +39,7 @@ public class LoginFrame extends BaseFrame {
             return;
         }
 
-        try (PreparedStatement pst = connection.prepareStatement("select * from M_id = ? and M_pw = ?")) {
+        try (PreparedStatement pst = connection.prepareStatement("select * from member where M_id = ? and M_pw = ?")) {
             pst.setObject(1, tfId.getText());
             pst.setObject(2, tfPw.getText());
 

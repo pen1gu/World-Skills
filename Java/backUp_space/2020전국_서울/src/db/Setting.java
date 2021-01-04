@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 public class Setting {
 
     static Connection connection;
@@ -133,7 +135,7 @@ public class Setting {
             execute("load data local infile './/2과제 지급자료/" + list[i] + ".txt' into table `" + list[i]
                     + "` fields terminated  by '\t' lines terminated  by '\n' ignore 1 lines");
         }
-        System.out.println("완성");
+        JOptionPane.showMessageDialog(null, "완성되었습니다.");
     }
 
     public static void execute(String sql) {
