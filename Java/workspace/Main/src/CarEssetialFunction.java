@@ -1,4 +1,4 @@
 
-public abstract class CarEssetialFunction {
+public abstract class CarEssentialFunction {
 	public abstract void carMove();
 }

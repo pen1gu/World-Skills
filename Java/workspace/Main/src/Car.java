@@ -1,5 +1,5 @@
 
-public class Car extends CarEssetialFunction {
+public class Car extends CarEssentialFunction {
 	final static int CAR_SPEED = 20;
 
 	private String carName; // 자동차 이름 param
