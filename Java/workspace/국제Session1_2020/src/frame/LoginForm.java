@@ -23,24 +23,26 @@ public class LoginForm extends BaseFrame {
 	ConnectionManager CM;
 
 	public LoginForm(ConnectionManager CM) {
-		super(400, 200, "로그인");
+		super(400, 200, "濡쒓렇�씤");
 		this.CM = CM;
 		timeCheck = new TimeCheck();
 
 		JPanel centerPanel = new JPanel(null);
+		
+		
 		JPanel southPanel = new JPanel(new FlowLayout());
 
 		add(createLabel(new JLabel("Music Market", 0), new Font("Gothic", 1, 24), Color.red), BorderLayout.NORTH);
 
-		centerPanel.add(createComponent(new JLabel("아이디:"), 10, 10, 150, 20));
-		centerPanel.add(createComponent(new JLabel("비밀번호:"), 10, 50, 150, 20));
+		centerPanel.add(createComponent(new JLabel("�븘�씠�뵒:"), 10, 10, 150, 20));
+		centerPanel.add(createComponent(new JLabel("鍮꾨�踰덊샇:"), 10, 50, 150, 20));
 
 		centerPanel.add(txtId);
 		centerPanel.add(txtPwf);
-		centerPanel.add(createComponent(createButtonWithOutMargin("로그인", e -> clickLogin()), 310, 10, 65, 75));
+		centerPanel.add(createComponent(createButtonWithOutMargin("濡쒓렇�씤", e -> clickLogin()), 310, 10, 65, 75));
 
-		southPanel.add(createComponent(createButton("회원가입", e -> openFrame(new SignUpForm())), 170, 30));
-		southPanel.add(createComponent(createButton("아아디 / 비밀번호 찾기", e -> openFrame(new SignUpForm())), 170, 30));
+		southPanel.add(createComponent(createButton("�쉶�썝媛��엯", e -> openFrame(new SignUpForm())), 170, 30));
+		southPanel.add(createComponent(createButton("�븘�븘�뵒 / 鍮꾨�踰덊샇 李얘린", e -> openFrame(new SignUpForm())), 170, 30));
 
 		add(centerPanel);
 		add(southPanel, BorderLayout.SOUTH);
@@ -50,16 +52,16 @@ public class LoginForm extends BaseFrame {
 		String id = txtId.getText();
 		String pw = txtPwf.getText();
 
-		Member member = CM.getSQLResult(Member.class, "select * from `Member` where id = ? and pw = ?", id, pw); // 클래스
+		Member member = CM.getSQLResult(Member.class, "select * from `Member` where id = ? and pw = ?", id, pw); // �겢�옒�뒪
 		if (member != null) {
 			if (member.pw.equals(pw)) {
-				informationMessage(member.name + "님 환영합니다");
+				informationMessage(member.name + "�떂 �솚�쁺�빀�땲�떎");
 				openFrame(new MainForm(CM));
 				return;
 			}
 		}
 
-		errorMessage("아이디 또는 비밀번호가 잘못되었습니다");
+		errorMessage("�븘�씠�뵒 �삉�뒗 鍮꾨�踰덊샇媛� �옒紐삳릺�뿀�뒿�땲�떎");
 	}
 
 	public static void main(String[] args) {
