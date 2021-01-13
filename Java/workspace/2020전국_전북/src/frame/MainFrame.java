@@ -53,14 +53,14 @@ public class MainFrame extends BaseFrame {
 					new LoginModal(ud, MainFrame.this).setVisible(true);
 					return;
 				}
-				
+
 				ud.setUserLoginStatus(false);
 				changeSession();
 				southPanel.removeAll();
 				southPanel.add(new JLabel("by YHJ", 4));
 			}
 		});
-		
+
 		int i = 1;
 		for (JPanel panel : new JPanel[] { new FlightPanel(), new MyReservationPanel(), new SchedulePanel(),
 				new MyInfoPanel() }) {
@@ -96,19 +96,15 @@ public class MainFrame extends BaseFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				super.mousePressed(e);
+				southPanel.removeAll();
 				if (object instanceof JPanel) {
-					southPanel.removeAll();
 					southPanel.add((JPanel) object);
+					
+					System.out.println(object.getClass() +" -> "+southPanel.getComponentCount());
 					resizeFrame();
 				} else if (object instanceof JDialog) {
-//					if (ud.isUserLoginStatus() == false) {
-//						openDialog((JDialog) object);
-//						return;
-//					}
-					
 					ud.setUserLoginStatus(false);
 					changeSession();
-					southPanel.removeAll();
 					southPanel.add(new JLabel("by YHJ", 4));
 				}
 			}
@@ -118,6 +114,8 @@ public class MainFrame extends BaseFrame {
 	public void resizeFrame() {
 		MainFrame.this.setSize(750, 600);
 		southPanel.setPreferredSize(new Dimension(750, 400));
+		revalidate();
+		repaint();
 		setLocationRelativeTo(null);
 	}
 
@@ -126,7 +124,6 @@ public class MainFrame extends BaseFrame {
 		southPanel.setPreferredSize(new Dimension(750, 20));
 		setLocationRelativeTo(null);
 	}
-
 
 	public void resetSession() {
 		lbSession.setText("<html><u>Login</u><html>");
