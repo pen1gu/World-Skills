@@ -28,7 +28,7 @@ public class BaseFrame extends JFrame {
 	}
 
 	public static void informationMessage(String text) {
-		JOptionPane.showMessageDialog(null, text, "메시지", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, text, "메시지", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	public static JLabel createLabel(JLabel label, Font font) {
