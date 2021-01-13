@@ -21,18 +21,32 @@ public class Connector {
 	}
 
 	public static ResultSet getSqlResult(String sql, Object... objects) {
-		PreparedStatement pst = null;
 		ResultSet rs = null;
 		try {
 			int cnt = 1;
+			PreparedStatement pst = connection.prepareStatement(sql);
 			for (Object object : objects) {
 				pst.setObject(cnt, object);
 				cnt++;
 			}
-			rs = pst.executeQuery(sql);
+			rs = pst.executeQuery();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return rs;
+	}
+
+	public static void withoutSqlResult(String sql, Object... objects) {
+		try {
+			int cnt = 1;
+			PreparedStatement pst = connection.prepareStatement(sql);
+			for (Object object : objects) {
+				pst.setObject(cnt, object);
+				cnt++;
+			}
+			pst.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
