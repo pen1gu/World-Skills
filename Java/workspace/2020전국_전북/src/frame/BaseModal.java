@@ -25,11 +25,11 @@ public class BaseModal extends JDialog {
 	}
 
 	public static void errorMessage(String text) {
-		JOptionPane.showMessageDialog(null, text, "메시지", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, text, "ERR", JOptionPane.ERROR_MESSAGE);
 	}
 
 	public static void informationMessage(String text) {
-		JOptionPane.showMessageDialog(null, text, "메시지", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, text, "Message", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	public static JLabel createLabel(JLabel label, Font font) {
@@ -53,9 +53,9 @@ public class BaseModal extends JDialog {
 		return button;
 	}
 
-	public void openFrame(JFrame frame) {
+	public void openDialog(JDialog dialog) {
 		dispose();
-		frame.setVisible(true);
+		dialog.setVisible(true);
 	}
 
 	public static ImageIcon getImage(int width, int height, String path) {
