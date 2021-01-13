@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -14,22 +15,31 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 import javax.swing.border.LineBorder;
 
 import model.Connector;
 import model.UserData;
 
 public class LoginModal extends BaseModal {
-
+	// session 유지 현상
+	
 	UserData ud;
 	JCheckBox idSaveCheckBox = new JCheckBox();
 	JTextField tfId;
 	JPasswordField tfPw;
 
-	public LoginModal(UserData ud) {
+	MainFrame mainFrame;
+
+	public LoginModal(UserData ud, MainFrame mainFrame) {
 		super(290, 260, "LOGIN");
 		this.ud = ud;
-
+		this.mainFrame = mainFrame;
+		
+		
+		// main 시작 시점에서 시작이 되어있음 (???)
+		System.out.println("init");
+		
 		JPanel[] panels = new JPanel[3];
 		JPanel centerPanel = new JPanel(null);
 		JPanel southPanel = createComponent(new JPanel(new GridLayout(0, 1)), 400, 70);
@@ -39,8 +49,8 @@ public class LoginModal extends BaseModal {
 
 		centerPanel.add(createComponent(new JLabel("아이디"), 0, 25, 50, 20));
 		centerPanel.add(createComponent(new JLabel("비밀번호"), 0, 70, 50, 20));
-		centerPanel.add(tfId = createComponent(new JTextField(), 50, 15, 120, 40));
-		centerPanel.add(tfPw = createComponent(new JPasswordField(), 50, 60, 120, 40));
+		centerPanel.add(tfId = createComponent(new JTextField(""), 50, 15, 120, 40));
+		centerPanel.add(tfPw = createComponent(new JPasswordField(""), 50, 60, 120, 40));
 		centerPanel.add(createComponent(createButton("로그인", e -> hasLogin()), 180, 15, 90, 85));
 
 		for (int i = 0; i < 3; i++) {
@@ -54,6 +64,12 @@ public class LoginModal extends BaseModal {
 		JLabel lbSignUp;
 		panels[1].add(lbSearchInfo = new JLabel("<html><u>아이디/비밀번호 찾기</u></html>"));
 		panels[2].add(lbSignUp = new JLabel("<html><u>회원가입</u></html>"));
+
+		lbSignUp.addMouseListener(new MouseAdapter() {
+			public void mousePressed(java.awt.event.MouseEvent e) {
+				new SignUpModal(ud).setVisible(true);
+			};
+		});
 
 		add(centerPanel);
 		add(southPanel, BorderLayout.SOUTH);
@@ -71,6 +87,9 @@ public class LoginModal extends BaseModal {
 				ud.setUserName(rs.getString(4));
 				ud.setUserLoginStatus(true);
 				informationMessage("로그인이 완료되었습니다.");
+
+				mainFrame.changeSession();
+				dispose();
 				return;
 			}
 		} catch (Exception e) {
