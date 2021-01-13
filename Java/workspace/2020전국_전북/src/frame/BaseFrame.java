@@ -53,7 +53,6 @@ public class BaseFrame extends JFrame {
 	}
 
 	public void openDialog(JDialog dialog) {
-		dispose();
 		dialog.setVisible(true);
 	}
 
