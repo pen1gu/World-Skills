@@ -64,7 +64,7 @@ public class FlightPanel extends JPanel {
 	}
 
 	public void selectStation() {
-		new DestinationInfoModal().setVisible(true);
+		new DestinationInfoPanel().setVisible(true);
 	}
 
 	public void openCalendar() {
