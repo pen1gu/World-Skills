@@ -60,5 +60,10 @@ public class BaseFrame extends JFrame {
 	public static ImageIcon getImage(String path, int width, int height) {
 		return new ImageIcon();
 	}
+	
+	public void openFrame(JFrame frame) {
+		dispose();
+		frame.setVisible(true);
+	}
 
 }

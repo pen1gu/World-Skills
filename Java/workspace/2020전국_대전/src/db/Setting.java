@@ -69,7 +69,7 @@ public class Setting {
 
 		execute("set global local_infile=1");
 
-		for (String table : new String[] { "mealtype", "reservation", "w_m", "w_ty", "weddinghall", "weddingtype" }) {
+		for (String table : new String[] { "mealtype", "weddingtype", "w_m", "w_ty", "weddinghall", "reservation" }) {
 			execute("load data local infile './datafiles/" + table + ".txt' into table " + table
 					+ " fields terminated by '\t' lines terminated by '\n' ignore 1 lines");
 		}
