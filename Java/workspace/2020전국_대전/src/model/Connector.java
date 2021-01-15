@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class Connector {
+public class Connector { //이거도 다시 생각해보자 ㅋㅋ
 	static Connection connection;
 	static Statement statement;
 
@@ -21,32 +21,18 @@ public class Connector {
 		}
 	}
 
-	public static ResultSet getSqlResult(String sql, Object... objects) { // 데이터 넣고 받아야할 때 ex) select
-		ResultSet rs = null;
-		try (PreparedStatement pst = connection.prepareStatement(sql)) {
-			for (int i = 0; i < objects.length; i++) {
-				pst.setObject(i + 1, objects[i]);
-			}
-
-			rs = pst.executeQuery();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return rs;
-	}
-
-	public static ResultSet getSqlResultWithoutObject(String sql) {
-		ResultSet rs = null;
-
-		try {
-			rs = statement.executeQuery(sql);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return rs;
-	}
+	/*
+	 * public static ResultSet getSqlResult(String sql, Object... objects) { // 데이터
+	 * 넣고 받아야할 때 ex) select ResultSet rs = null; try (PreparedStatement pst =
+	 * connection.prepareStatement(sql)) { for (int i = 0; i < objects.length; i++)
+	 * { pst.setObject(i + 1, objects[i]); }
+	 * 
+	 * rs = pst.executeQuery();
+	 * 
+	 * } catch (Exception e) { e.printStackTrace();
+	 * 
+	 * } return rs; }
+	 */
 
 	public static void getSqlWithoutResult(String sql, Object... objects) {
 		try (PreparedStatement pst = connection.prepareStatement(sql)) {
@@ -90,7 +76,6 @@ public class Connector {
 
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i));
-			System.out.println();
 		}
 	}
 }

@@ -56,7 +56,7 @@ public class Setting {
 				+ "DEFAULT CHARACTER SET = utf8;");
 
 		execute("CREATE TABLE IF NOT EXISTS `wedding`.`w_ty` (\r\n" + "  `wNo` INT(11) NULL DEFAULT NULL,\r\n"
-				+ "  `mNo` INT(11) NULL DEFAULT NULL)\r\n" + "ENGINE = InnoDB\r\n" + "DEFAULT CHARACTER SET = utf8;");
+				+ "`tyNo` INT(11) NULL DEFAULT NULL)\r\n" + "ENGINE = InnoDB\r\n" + "DEFAULT CHARACTER SET = utf8;");
 
 		execute("CREATE TABLE IF NOT EXISTS `wedding`.`w_m` (\r\n" + "  `wNo` INT(11) NULL DEFAULT NULL,\r\n"
 				+ "  `mNo` INT(11) NULL DEFAULT NULL)\r\n" + "ENGINE = InnoDB\r\n" + "DEFAULT CHARACTER SET = utf8;");
