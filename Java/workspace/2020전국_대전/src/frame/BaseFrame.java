@@ -38,6 +38,7 @@ public class BaseFrame extends JFrame {
 		setLocationRelativeTo(null);
 		setTitle(title);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		
 	}
 
 	public static void errorMessage(String caption, String txt) {

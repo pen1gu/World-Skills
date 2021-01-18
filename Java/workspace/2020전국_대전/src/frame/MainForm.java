@@ -49,7 +49,7 @@ public class MainForm extends BaseFrame {
 	}
 
 	public void insertTopHallList() {
-		try (ResultSet rs = Connector.getSqlResultWithoutObject(
+		try (ResultSet rs = statement.executeQuery(
 				"select count(w.wNo) as c,wName, wpeople,wprice, wadd from weddinghall as w inner join reservation as r on w.wNo = r.wNo group by w.wNo order by c desc limit 3;")) {
 			int cnt = 0;
 			while (rs.next()) {
@@ -67,13 +67,13 @@ public class MainForm extends BaseFrame {
 		returnValue = JOptionPane.showInputDialog("예약번호를 확인하세요.");
 		ConnectionManager connectionManager = new ConnectionManager();
 		connectionManager.connect();
-		
-		try  {
+
+		try {
 			connectionManager.getSqlResults("select * from reservation where rno = ?;", returnValue);
 			if (connectionManager.rs == null) {
 				return;
 			}
-			
+
 			if (connectionManager.rs.next()) {
 				openFrame(new ReservationCheckForm());
 				return;
@@ -81,7 +81,7 @@ public class MainForm extends BaseFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		connectionManager.close();
 	}
 
