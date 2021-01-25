@@ -102,7 +102,7 @@ public class HallSearchForm extends BaseFrame {
 		String mealType = cbMealType.getSelectedItem().equals("전체") ? "" : (String) cbMealType.getSelectedItem();
 
 		try (PreparedStatement pst = connection.prepareStatement(
-				"select wh.wno,wname,group_concat(tyname) as wtype ,mname, wh.wadd, wh.wpeople,wh.wprice from weddinghall as wh \r\n"
+				"select wh.wno,wname,group_concat(tyname) as wtype ,mname, wh.wadd, wh.wpeople,wh.wprice, wty.tyNo, wm.mNo from weddinghall as wh \r\n"
 						+ "left outer join w_ty as wty on wh.wNo = wty.wNo \r\n"
 						+ "left outer join weddingtype as wdt on wty.tyNo = wdt.tyNo\r\n"
 						+ "left outer join w_m as wm on wm.wNo = wh.wNo\r\n"
@@ -119,7 +119,7 @@ public class HallSearchForm extends BaseFrame {
 			int cnt = 0;
 			while (rs.next()) {
 				contentsPanel.add(new WeddingContent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getInt(6), rs.getInt(7)));
+						rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9)));
 				cnt++;
 			}
 
@@ -161,8 +161,21 @@ public class HallSearchForm extends BaseFrame {
 	}
 
 	class WeddingContent extends JPanel {
+		int weddingNo, person, price, tyNo, mNo;
+		String name, weddingType, mealType, addr;
+
 		public WeddingContent(int weddingNo, String name, String weddingType, String mealType, String addr, int person,
-				int price) {
+				int price, int tyNo, int mNo) {
+			this.weddingNo = weddingNo;
+			this.name = name;
+			this.weddingType = weddingType;
+			this.mealType = mealType;
+			this.addr = addr;
+			this.person = person;
+			this.price = price;
+			this.tyNo = tyNo;
+			this.mNo = mNo;
+
 			setLayout(new FlowLayout(FlowLayout.LEFT));
 
 			setPreferredSize(new Dimension(215, 250));
@@ -173,12 +186,12 @@ public class HallSearchForm extends BaseFrame {
 			add(createComponent(new JLabel("mealType:" + mealType), 200, 20));
 			add(createComponent(new JLabel("person:" + person), 200, 20));
 			add(createComponent(new JLabel("price:" + price), 200, 20));
-			
+
 			addMouseListener(new MouseAdapter() {
 				@Override
 				public void mousePressed(MouseEvent e) {
 					super.mousePressed(e);
-					
+					openFrame(new ReservationForm(WeddingContent.this));
 				}
 			});
 		}

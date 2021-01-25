@@ -68,21 +68,16 @@ public class MainForm extends BaseFrame {
 		ConnectionManager connectionManager = new ConnectionManager();
 		connectionManager.connect();
 
-		try {
-			connectionManager.getSqlResults("select * from reservation where rno = ?;", returnValue);
-			if (connectionManager.rs == null) {
-				return;
-			}
-
-			if (connectionManager.rs.next()) {
+		try  {
+			ResultSet rs = connectionManager.getSqlResults("select * from reservation where rno = ?;", returnValue);
+			if (rs.next()) {
 				openFrame(new ReservationCheckForm());
 				return;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		connectionManager.close();
+		connectionManager.freeConnection();
 	}
 
 	class HallInfoPanel extends JPanel {

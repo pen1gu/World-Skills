@@ -1,7 +1,10 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.util.Arrays;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -26,6 +29,38 @@ public class TestClass extends JFrame {
 
 		JScrollPane jScrollPane = new JScrollPane(table);
 		jScrollPane.setPreferredSize(new Dimension(500, 500));
+
+		int[] arr1 = new int[4];
+		int[] arr2 = new int[4];
+		int[] arr3 = new int[4];
+		int[] arr4 = new int[4];
+
+		Arrays.fill(arr1, 0);
+		Arrays.fill(arr2, 0);
+		Arrays.fill(arr3, 0);
+		Arrays.fill(arr4, 0);
+		arr1[0] = 30;
+		arr2[1] = 30;
+		arr3[2] = 30;
+		arr4[3] = 30;
+
+		new Thread() {
+			public void run() {
+				try {
+					while (true) {
+						for (int i = 0; i < 4; i++) {
+							jScrollPane.setBorder(
+									BorderFactory.createMatteBorder(arr1[i], arr2[i], arr3[i], arr4[i], Color.blue));
+							repaint();
+							Thread.sleep(50);
+						}
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			};
+
+		}.start();
 
 		add(jScrollPane);
 	}

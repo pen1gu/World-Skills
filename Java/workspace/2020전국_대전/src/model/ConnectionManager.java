@@ -10,7 +10,7 @@ import java.sql.Statement;
 public class ConnectionManager { // connection manager는 다시 생각해보자.
 	Connection connection = null;
 	Statement statement = null;
-	public ResultSet rs = null;
+	PreparedStatement pst = null;
 
 	public void connect() {
 		try {
@@ -22,28 +22,28 @@ public class ConnectionManager { // connection manager는 다시 생각해보자
 		}
 	}
 
-	public void close() {
+	public void freeConnection() {
 		try {
+			if (statement != null)
+				statement.close();
+			if (pst != null)
+				statement.close();
+			if (connection != null)
+				connection.close();
 			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void select(String sql) {
+	public ResultSet select(String sql) {
+		ResultSet rs = null;
 		try {
-			this.rs = statement.executeQuery(sql);
+			rs = statement.executeQuery(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (Exception e2) {
-					e2.printStackTrace();
-				}
-			}
 		}
+		return rs;
 	}
 
 	public void update(String sql) {
@@ -62,14 +62,17 @@ public class ConnectionManager { // connection manager는 다시 생각해보자
 		}
 	}
 
-	public void getSqlResults(String sql, Object... objects) { // object 사용하는 부분은 보류
-		try (PreparedStatement pst = connection.prepareStatement(sql)){
+	public ResultSet getSqlResults(String sql, Object... objects) { // object 사용하는 부분은 보류
+		ResultSet rs = null;
+
+		try (PreparedStatement pst = connection.prepareStatement(sql)) {
 			for (int i = 0; i < objects.length; i++) {
 				pst.setObject(i + 1, objects[i]);
 			}
-			this.rs = pst.executeQuery();
+			rs = pst.executeQuery();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return rs;
 	}
 }
