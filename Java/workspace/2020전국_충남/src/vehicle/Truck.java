@@ -21,7 +21,7 @@ public class Truck extends VehicleFunction {
 	}
 
 	@Override
-	public void turn(boolean leftOrRight) {
+	public void turn(int leftOrRight) {
 		// TODO Auto-generated method stub
 		
 	}
