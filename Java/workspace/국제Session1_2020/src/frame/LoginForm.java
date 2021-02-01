@@ -57,7 +57,7 @@ public class LoginForm extends BaseFrame {
 			if (member.pw.equals(pw)) {
 				informationMessage(member.name + "�떂 �솚�쁺�빀�땲�떎");
 				openFrame(new MainForm(CM));
-				return;
+				return;	
 			}
 		}
 
