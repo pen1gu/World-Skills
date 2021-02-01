@@ -5,23 +5,28 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.TrayIcon.MessageType;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import frame.HallSearchForm.WeddingContent;
 
-public class ReservationForm extends BaseFrame {
+public class ReservationForm extends BaseFrame { // 예약 부분 만들다가 너무 많아서 기능 부분만 구현 
 
 	JPanel imgPanel = new JPanel(new BorderLayout());
 	JLabel lbImg = createComponent(new JLabel(), 460, 230);// panel로 변경
@@ -72,6 +77,7 @@ public class ReservationForm extends BaseFrame {
 			}
 			panels[i].add(createComponent(textFields[i - cnt] = new JTextField(), 350, 20));
 		}
+
 		panels[9] = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		panels[9].add(createComponent(createButton("청첩장 선택", e -> selectImage()), 100, 30));
 		centerInner_south.add(panels[9]);
@@ -87,6 +93,11 @@ public class ReservationForm extends BaseFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		/*
+		 * textFields[0] = content.name; textFields[1] = content.addr; textFields[2] =
+		 * content.person; textFields[3] = content.price;
+		 */		textFields[4].setText("");
 
 		insertImageList();
 		setImage();
@@ -136,26 +147,28 @@ public class ReservationForm extends BaseFrame {
 		}
 		int reservationNum = 0;
 		for (int i = 0; i < reservationList.size(); i++) {
-			 reservationNum = (int) (Math.random() * 89999 + 10000);
-			if (reservationList.contains(reservationNum)) break;
+			reservationNum = (int) (Math.random() * 89999 + 10000);
+			if (reservationList.contains(reservationNum))
+				break;
 		}
 
-		try (PreparedStatement pst = connection.prepareStatement("insert into reservation values(?,?,?,?,?,?,?,?,?,?);")){
-			pst.setObject(1, reservationNum);
-			pst.setObject(2, content.weddingNo);
-			pst.setObject(3, textFields[1].getText());
-			pst.setObject(4, reservationNum);
-			pst.setObject(5, reservationNum);
-			pst.setObject(6, reservationNum);
-			pst.setObject(7, reservationNum);
-			pst.setObject(8, reservationNum);
-			pst.setObject(9, reservationNum);
-			pst.setObject(10, reservationNum);
-			
+		try (PreparedStatement pst = connection
+				.prepareStatement("insert into reservation values(?,?,?,?,?,?,?,?,?,?);")) {
+			pst.setObject(1, reservationNum); // 예약 번호
+			pst.setObject(2, content.weddingNo); // 웨딩홀 번호
+			pst.setObject(3, peopleCnt); // 수용 인원
+			pst.setObject(4, content.tyNo); // 예식 형태
+			pst.setObject(5, content.mNo); // 식사 형태
+			pst.setObject(6, 1); // 앨범 형태
+			pst.setObject(7, 1);// 청첩장 형태
+			pst.setObject(8, 0); // 드레스
+			pst.setObject(9, LocalDate.now().getYear()); // 년도
+			pst.setObject(10, 0); // 결제 번호
 			pst.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		informationMessage("예약이 완료되었습니다.\n예약번호는 " + reservationNum + "", "예약완료");
+		JOptionPane.showInternalOptionDialog(null, "예약이 완료되었습니다.\n예약번호는 " + reservationNum + "", "예약완료", 0,
+				JOptionPane.INFORMATION_MESSAGE, null, new String[] { "클립보드에 복사", "확인" }, "안녕안녕");
 	}
 }
