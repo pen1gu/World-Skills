@@ -3,6 +3,7 @@ package model;
 import static frame.BaseFrame.createComponent;
 
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public abstract class VehicleFunction extends JLabel {
 
@@ -22,5 +23,5 @@ public abstract class VehicleFunction extends JLabel {
 
 	public abstract void move();
 
-	public abstract void turn(boolean leftOrRight);
+	public abstract void turn(int leftOrRight);
 }
