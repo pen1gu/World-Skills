@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -97,27 +98,62 @@ public class MainForm extends BaseFrame {
 	public void startPark() {
 		// 입차 시스템
 
-		moveThread.stop();
+		if (moveThread != null)
+			moveThread.stop();
 
-		VehicleFunction object = carInfo.getVehicleFunction();
+		VehicleFunction vehicle = carInfo.getVehicleFunction();
 
-		object.setLocation(890, 420);
-		centerPanel.add(object);
+		vehicle.setLocation(890, 420);
+		centerPanel.add(vehicle);
 
 		moveThread = new Thread() {
 			@Override
 			public void run() {
 				super.run();
+
+				int x = 890, y = 420;
+				int currentX = 0, currentY = 0;
+
 				try {
 					for (int i = 1; i <= 400; i++) {
-						object.setLocation(890, 420 - i);
+						vehicle.setLocation(x, currentY = y - i);
 						Thread.sleep(10);
 					}
+					y = currentY;
+
+					vehicle.turn(-1); // 자동차가 도는거를 구현해야한다
+
+					for (int i = 1; i <= 690; i++) {
+						vehicle.setLocation(currentX = x - i, y);
+						Thread.sleep(10);
+					}
+					x = currentX;
+
+					vehicle.turn(0);
+					
+					for (int i = 1; i <= 80; i++) {
+						vehicle.setLocation(x, currentY = y + i);
+						Thread.sleep(10);
+					}
+
+					y = currentY;
+
+					// if y 좌표가 자동차 길이 보다 작을 때
+
+					vehicle.turn(-1);
+					for (int i = 1; i <= 120; i++) {
+						vehicle.setLocation(currentX = x - i, y);
+						Thread.sleep(10);
+					}
+					currentX = x;
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		};
+
+		moveThread.start();
 	}
 
 	public static void main(String[] args) {
