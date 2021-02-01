@@ -74,6 +74,8 @@ public class SelectParkVehicleForm extends BaseFrame {
 		carInfo.setFunction(autoVehicle, path);
 
 		main.startPark();
+		
+		//callback으로 초기화 시켜주어야함
 		// 확인 goT을 때 넘겨야하는 것.
 		// 선택한 자동차의 정보 -> 기본적으로 carInfo에 저장이 되어있다.
 		// vehicle 함수 클래스는 움직임을 담은 클래스이기에
