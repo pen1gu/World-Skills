@@ -92,8 +92,8 @@ public class BaseFrame extends JFrame {
 		frame.setVisible(true);
 	}
 
-	public void openFrame(JFrame frame) {
-		dispose();
-		frame.setVisible(true);
+	public void openFrame(JFrame openFrame, JFrame closeFrame) {
+		closeFrame.dispose();
+		openFrame.setVisible(true);
 	}
 }
