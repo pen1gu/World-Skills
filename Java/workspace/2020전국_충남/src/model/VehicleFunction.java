@@ -21,7 +21,7 @@ public abstract class VehicleFunction extends JLabel {
 		return createComponent(lbCarImage, 60, 120);
 	}
 
-	public abstract void move();
+	public abstract void move(JPanel[][] department);
 
 	public abstract void turn(int leftOrRight);
 }
