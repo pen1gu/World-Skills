@@ -1,7 +1,15 @@
 package db;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -91,12 +99,47 @@ public class Setting {
 
 		execute("set global local_infile=1");
 
-		for (String element : new String[] { "ad", "category", "image", "orderlist", "product", "review", "seller",
+		for (String element : new String[] { "ad", "category", "images", "orderlist", "product", "review", "seller",
 				"stock", "user" }) {
+
 			execute("load data local infile './지급자료/" + element + ".txt' into table " + element
 					+ " fields terminated by '\t' lines terminated by '\n' ignore 1 lines");
 		}
-		
+
+		int count = 1;
+		File[] files = new File("./지급자료/images").listFiles();
+		for (File file : files) {
+			try (PreparedStatement pst = connection.prepareStatement("update image set Image = ? where serial = ?")) {
+				InputStream inputStream = new FileInputStream(file);
+
+				pst.setBinaryStream(1, inputStream);
+				pst.setInt(2, count);
+
+				pst.execute();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+//
+//		for (File file : files) {
+//			try (PreparedStatement pst = connection.prepareStatement("insert into image values(0,?,?)")) {
+//
+//				var lines = Files.readAllLines(Paths.get("./지급자료/image.txt"));
+//				InputStream inputStream = new FileInputStream(file);
+//				
+//				for (int i = 1; i < lines.size(); i++) {
+//					String split[] = lines.get(i).split("\t");
+//					pst.setObject(1, split[1]);
+//					pst.setBinaryStream(2, inputStream);
+//					
+//					pst.execute();
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+
 		System.out.println("complete");
 	}
 
