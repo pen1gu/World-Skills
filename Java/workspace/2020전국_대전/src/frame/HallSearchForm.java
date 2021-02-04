@@ -122,6 +122,7 @@ public class HallSearchForm extends BaseFrame {
 						rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9)));
 				cnt++;
 			}
+			
 
 			row = cnt / 3;
 			if (cnt % 3 != 0) {
