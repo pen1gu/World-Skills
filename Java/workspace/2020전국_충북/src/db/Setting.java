@@ -99,7 +99,7 @@ public class Setting {
 
 		execute("set global local_infile=1");
 
-		for (String element : new String[] { "ad", "category", "images", "orderlist", "product", "review", "seller",
+		for (String element : new String[] { "ad", "category", "image", "orderlist", "product", "review", "seller",
 				"stock", "user" }) {
 
 			execute("load data local infile './지급자료/" + element + ".txt' into table " + element
@@ -112,8 +112,11 @@ public class Setting {
 			try (PreparedStatement pst = connection.prepareStatement("update image set Image = ? where serial = ?")) {
 				InputStream inputStream = new FileInputStream(file);
 
+				int nameIndex = file.getName().indexOf(".");
+				int fileIndex = Integer.parseInt(file.getName().substring(0, nameIndex));
+
 				pst.setBinaryStream(1, inputStream);
-				pst.setInt(2, count);
+				pst.setInt(2, fileIndex);
 
 				pst.execute();
 			} catch (Exception e) {
