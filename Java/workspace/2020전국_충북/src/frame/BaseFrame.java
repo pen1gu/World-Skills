@@ -6,11 +6,14 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -20,20 +23,6 @@ import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 public class BaseFrame extends JFrame {
-
-	static Connection connection;
-	static Statement statement;
-
-	static {
-		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/computer?serverTimezone=UTC", "user",
-					"1234");
-			statement = connection.createStatement();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	public BaseFrame(int width, int height, String title) {
 		setSize(width, height);
 		setLocationRelativeTo(null);
@@ -89,8 +78,14 @@ public class BaseFrame extends JFrame {
 				Toolkit.getDefaultToolkit().getImage(path).getScaledInstance(width, height, Image.SCALE_SMOOTH));
 	}
 
+	public static ImageIcon getImage(byte[] bytes, int width, int height) {
+		return new ImageIcon(
+				Toolkit.getDefaultToolkit().createImage(bytes).getScaledInstance(width, height, Image.SCALE_SMOOTH));
+	}
+
 	public void openFrame(JFrame frame) {
 		dispose();
 		frame.setVisible(true);
 	}
+
 }
