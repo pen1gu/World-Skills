@@ -1,7 +1,7 @@
 package frame;
 
-public class CPUForm extends BaseFrame {
+public class CPUForm extends BasePage {
 	public CPUForm() {
-		super(10, 10, "");
+		super(10, 10);
 	}
 }
