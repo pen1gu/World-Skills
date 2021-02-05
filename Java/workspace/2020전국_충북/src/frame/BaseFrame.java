@@ -20,6 +20,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 public class BaseFrame extends JFrame {
@@ -88,4 +89,11 @@ public class BaseFrame extends JFrame {
 		frame.setVisible(true);
 	}
 
+	public void changePage(JPanel openPanel) {
+		MainFrame.contentsPanel.removeAll();
+		MainFrame.contentsPanel.add(openPanel);
+		openPanel.setVisible(true);
+		revalidate();
+		repaint();
+	}
 }
