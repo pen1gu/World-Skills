@@ -12,7 +12,7 @@ import model.UserData;
 
 public class MainFrame extends BaseFrame {
 
-	public static JPanel contentsPanel = new JPanel();
+	public static JPanel contentsPanel = new JPanel(new BorderLayout());
 	public static boolean checkLogin;
 	public static MainPage mainPage = new MainPage();
 

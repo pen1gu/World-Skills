@@ -11,21 +11,20 @@ public class BasePage extends JPanel {
 
 	public void changePage(JPanel openPanel) {
 		MainFrame.contentsPanel.removeAll();
-
 		MainFrame.contentsPanel.add(openPanel);
 		openPanel.setVisible(true);
-
+		reconfiguration();
 	}
 
 	public void closePage() {
 		MainFrame.contentsPanel.removeAll();
 		MainFrame.contentsPanel.add(MainFrame.mainPage);
-		MainFrame.contentsPanel.revalidate();
-		MainFrame.contentsPanel.repaint();
+		reconfiguration();
 	}
 
 	public void reconfiguration() {
-		revalidate();
-		repaint();
+		MainFrame.contentsPanel.revalidate();
+		MainFrame.contentsPanel.repaint();
+
 	}
 }
