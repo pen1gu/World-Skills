@@ -63,7 +63,8 @@ public class ConnectionManager {
 
 	public ResultSet getSqlResults(String sql, Object... objects) {
 		ResultSet rs = null;
-		try (PreparedStatement pst = connection.prepareStatement(sql)) {
+		try {
+			pst = connection.prepareStatement(sql);
 			for (int i = 0; i < objects.length; i++) {
 				pst.setObject(i + 1, objects[i]);
 			}
