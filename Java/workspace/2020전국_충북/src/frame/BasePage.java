@@ -1,8 +1,11 @@
 package frame;
 
+import java.awt.Color;
 import java.awt.Dimension;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 public class BasePage extends JPanel {
 	public BasePage(int width, int height) {
@@ -26,5 +29,10 @@ public class BasePage extends JPanel {
 		MainFrame.contentsPanel.revalidate();
 		MainFrame.contentsPanel.repaint();
 
+	}
+
+	public void setButtonSetting(JButton button, Color color) {
+		button.setBackground(color);
+		button.setBorder(new LineBorder(color));
 	}
 }
