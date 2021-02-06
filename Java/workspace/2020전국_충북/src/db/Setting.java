@@ -124,25 +124,6 @@ public class Setting {
 			}
 		}
 
-//
-//		for (File file : files) {
-//			try (PreparedStatement pst = connection.prepareStatement("insert into image values(0,?,?)")) {
-//
-//				var lines = Files.readAllLines(Paths.get("./지급자료/image.txt"));
-//				InputStream inputStream = new FileInputStream(file);
-//				
-//				for (int i = 1; i < lines.size(); i++) {
-//					String split[] = lines.get(i).split("\t");
-//					pst.setObject(1, split[1]);
-//					pst.setBinaryStream(2, inputStream);
-//					
-//					pst.execute();
-//				}
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-
 		System.out.println("complete");
 	}
 
