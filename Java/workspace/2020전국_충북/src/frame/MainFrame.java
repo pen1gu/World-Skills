@@ -20,9 +20,8 @@ public class MainFrame extends BaseFrame {
 	JLabel lbLogin = new JLabel("로그인/회원가입");
 	JLabel lbMyPage = new JLabel("마이페이지");
 
-
 	UserData userData = new UserData();
-	
+
 	public MainFrame() {
 		super(800, 500, "메인");
 		setLayout(new BorderLayout());
