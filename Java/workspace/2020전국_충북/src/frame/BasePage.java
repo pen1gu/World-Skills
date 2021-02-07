@@ -28,11 +28,10 @@ public class BasePage extends JPanel {
 	public void reconfiguration() {
 		MainFrame.contentsPanel.revalidate();
 		MainFrame.contentsPanel.repaint();
-
 	}
 
-	public void setButtonSetting(JButton button, Color color) {
-		button.setBackground(color);
-		button.setBorder(new LineBorder(color));
+	public void setButtonSetting(JButton button, Color backColor, Color borderColor) {
+		button.setBorder(new LineBorder(borderColor));
+		button.setBackground(backColor);
 	}
 }
