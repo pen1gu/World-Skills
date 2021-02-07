@@ -43,19 +43,19 @@ public class MainPage extends BasePage {
 		imagePanel.setBackground(new Color(204, 229, 255));
 
 		center_west.add(
-				createComponent(createButtonWithColor("CPU", e -> changePage(new CPUForm()), Color.white), 150, 40));
-		center_west.add(
-				createComponent(createButtonWithColor("메인보드", e -> changePage(new CPUForm()), Color.white), 150, 40));
-		center_west.add(
-				createComponent(createButtonWithColor("메모리", e -> changePage(new CPUForm()), Color.white), 150, 40));
-		center_west.add(
-				createComponent(createButtonWithColor("그래픽카드", e -> changePage(new CPUForm()), Color.white), 150, 40));
-		center_west.add(createComponent(createButtonWithColor("SSD / HDD", e -> changePage(new CPUForm()), Color.white),
+				createComponent(createButtonWithColor("CPU", e -> changePage(new SearchPage()), Color.white), 150, 40));
+		center_west.add(createComponent(createButtonWithColor("메인보드", e -> changePage(new SearchPage()), Color.white),
 				150, 40));
 		center_west.add(
-				createComponent(createButtonWithColor("케이스", e -> changePage(new CPUForm()), Color.white), 150, 40));
+				createComponent(createButtonWithColor("메모리", e -> changePage(new SearchPage()), Color.white), 150, 40));
+		center_west.add(createComponent(createButtonWithColor("그래픽카드", e -> changePage(new SearchPage()), Color.white),
+				150, 40));
+		center_west.add(createComponent(
+				createButtonWithColor("SSD / HDD", e -> changePage(new SearchPage()), Color.white), 150, 40));
 		center_west.add(
-				createComponent(createButtonWithColor("파워", e -> changePage(new CPUForm()), Color.white), 150, 40));
+				createComponent(createButtonWithColor("케이스", e -> changePage(new SearchPage()), Color.white), 150, 40));
+		center_west.add(
+				createComponent(createButtonWithColor("파워", e -> changePage(new SearchPage()), Color.white), 150, 40));
 
 		JLabel[] label = new JLabel[imageFiles.list.size() / 2 + 1];
 		int count = 2;
