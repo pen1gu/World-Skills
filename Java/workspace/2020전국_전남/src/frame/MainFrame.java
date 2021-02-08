@@ -57,7 +57,7 @@ public class MainFrame extends BaseFrame {
 		}));
 
 		JPanel centerInnerPanel = createComponent(new JPanel(null), 280, 130); // 로그인 패널로 만들어 주어야한다.
-
+ //border 만들기
 		centerPanel.add(centerInnerPanel);
 		centerPanel.setBorder(new LineBorder(Color.DARK_GRAY));
 		centerInnerPanel.setBorder(new LineBorder(Color.black));
