@@ -25,7 +25,7 @@ public class MainFrame extends BaseFrame {
 	public MainFrame() {
 		super(800, 500, "메인");
 		setLayout(new BorderLayout());
-
+ 
 		JPanel northPanel = createComponent(new JPanel(null), 800, 40);
 		northPanel.setBackground(Color.white);
 		northPanel.add(lbMain);
