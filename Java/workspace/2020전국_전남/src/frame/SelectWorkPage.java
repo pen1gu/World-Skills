@@ -1,6 +1,6 @@
 package frame;
 
-import static frame.BaseFrame.createButton;
+import static frame.BaseFrame.*;
 import static frame.BaseFrame.setDefaultColor;
 
 import java.awt.GridLayout;
@@ -13,7 +13,7 @@ public class SelectWorkPage extends JPanel {
 	public SelectWorkPage() {
 		setLayout(new GridLayout(0, 1, 10, 10));
 		add(new JLabel("  작업을 선택하세요"));
-		add(createButton("프로젝트 생성", e -> test()));
+		add(createButton("프로젝트 생성", e -> openDialog(new CreateNewProjectPage())));
 		add(createButton("프로젝트 열기", e -> test()));
 		add(createButton("프로젝트 직원 추가", e -> test()));
 		add(createButton("로그인 화면", e -> test()));
@@ -28,5 +28,6 @@ public class SelectWorkPage extends JPanel {
 	}
 
 	public static void main(String[] args) {
+
 	}
 }
