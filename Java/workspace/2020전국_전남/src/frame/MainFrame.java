@@ -18,9 +18,6 @@ import javax.swing.border.LineBorder;
 
 public class MainFrame extends BaseFrame {
 
-	JTextField tfId = createComponent(new JTextField(), 100, 10, 160, 30);
-	JPasswordField tfPw = createComponent(new JPasswordField(), 100, 50, 160, 30);
-
 	public static JPanel centerPanel = new JPanel(new GridBagLayout());
 
 	public MainFrame() {
@@ -49,33 +46,14 @@ public class MainFrame extends BaseFrame {
 			}
 		}));
 
-		northPanel.add(createButton("그래프", e -> new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-			}
-		}));
+		northPanel.add(createButton("그래프", e -> changePage(new ProjectForm())));
 
-		JPanel centerInnerPanel = createComponent(new JPanel(null), 280, 130); // 로그인 패널로 만들어 주어야한다.
- //border 만들기
-		centerPanel.add(centerInnerPanel);
+		// border 만들기
+		centerPanel.add(new LoginPanel());
 		centerPanel.setBorder(new LineBorder(Color.DARK_GRAY));
-		centerInnerPanel.setBorder(new LineBorder(Color.black));
-
-		centerInnerPanel.add(createComponent(new JLabel("ID:", JLabel.LEFT), 30, 10, 80, 30));
-		centerInnerPanel.add(createComponent(new JLabel("PW:", JLabel.LEFT), 30, 50, 80, 30));
-
-		centerInnerPanel.add(tfId);
-		centerInnerPanel.add(tfPw);
-
-		centerInnerPanel.add(createComponent(createButton("로그인", e -> clickLogin()), 30, 90, 230, 30));
 
 		add(northPanel, BorderLayout.NORTH);
 		add(centerPanel, BorderLayout.CENTER);
-	}
-
-	public void clickLogin() {
-		changePage(createComponent(new SelectWorkPage(), 300, 200));
 	}
 
 	public static void main(String[] args) {
