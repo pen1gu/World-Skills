@@ -84,7 +84,7 @@ public class SignUpPage extends BasePage {
 		}
 
 		public void clickSignUp() {
-			//회원가입
+			// 회원가입
 		}
 	}
 
