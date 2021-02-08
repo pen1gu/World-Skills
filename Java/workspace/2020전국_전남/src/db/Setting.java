@@ -40,7 +40,6 @@ public class Setting {
 				+ "    REFERENCES `Projectlibre`.`project` (`p_num`)\r\n" + "    ON DELETE CASCADE\r\n"
 				+ "    ON UPDATE CASCADE)\r\n" + "ENGINE = InnoDB\r\n" + "DEFAULT CHARACTER SET = utf8;");
 
-
 		execute("CREATE TABLE IF NOT EXISTS `Projectlibre`.`job` (\r\n"
 				+ "  `j_no` INT(11) NOT NULL AUTO_INCREMENT,\r\n" + "  `p_num` INT(11) NULL DEFAULT NULL,\r\n"
 				+ "  `no` INT(11) NULL DEFAULT NULL,\r\n" + "  `j_period` INT(11) NULL DEFAULT NULL,\r\n"
@@ -52,23 +51,19 @@ public class Setting {
 				+ "    FOREIGN KEY (`no`)\r\n" + "    REFERENCES `Projectlibre`.`member` (`no`)\r\n"
 				+ "    ON DELETE CASCADE\r\n" + "    ON UPDATE CASCADE)\r\n" + "ENGINE = InnoDB\r\n"
 				+ "DEFAULT CHARACTER SET = utf8;");
-		
+
 		execute("CREATE TABLE IF NOT EXISTS `Projectlibre`.`detail` (\r\n"
 				+ "  `d_no` INT(11) NOT NULL AUTO_INCREMENT,\r\n" + "  `j_no` INT(11) NULL DEFAULT NULL,\r\n"
 				+ "  `d_odate` DATE NULL DEFAULT NULL,\r\n" + "  `d_edate` DATE NULL DEFAULT NULL,\r\n"
-				+ "  `d_note` VARCHAR(20) NULL DEFAULT NULL,\r\n" + "  PRIMARY KEY (`d_no`),\r\n"
-				+ "  INDEX `fk_detail_j_no_idx` (`j_no` ASC) VISIBLE,\r\n" + "  CONSTRAINT `fk_detail_j_no`\r\n"
-				+ "    FOREIGN KEY (`j_no`)\r\n" + "    REFERENCES `Projectlibre`.`job` (`j_no`)\r\n"
-				+ "    ON DELETE CASCADE\r\n" + "    ON UPDATE CASCADE)\r\n" + "ENGINE = InnoDB\r\n"
-				+ "DEFAULT CHARACTER SET = utf8;");
+				+ "  `d_note` VARCHAR(20) NULL DEFAULT NULL,\r\n" + "  PRIMARY KEY (`d_no`)\r\n" + " )"
+				+ "ENGINE = InnoDB\r\n" + "DEFAULT CHARACTER SET = utf8;");
 
 		execute("CREATE TABLE IF NOT EXISTS `Projectlibre`.`time_sc` (\r\n"
 				+ "  `t_no` INT(11) NOT NULL AUTO_INCREMENT,\r\n" + "  `d_no` INT(11) NULL DEFAULT NULL,\r\n"
 				+ "  `t_sc` VARCHAR(500) NULL DEFAULT NULL,\r\n" + "  PRIMARY KEY (`t_no`),\r\n"
 				+ "  INDEX `fk_time_d_no_idx` (`d_no` ASC) VISIBLE,\r\n" + "  CONSTRAINT `fk_time_d_no`\r\n"
-				+ "    FOREIGN KEY (`d_no`)\r\n" + "    REFERENCES `Projectlibre`.`detail` (`d_no`)\r\n"
-				+ "    ON DELETE CASCADE\r\n" + "    ON UPDATE CASCADE)\r\n" + "ENGINE = InnoDB\r\n"
-				+ "DEFAULT CHARACTER SET = utf8;");
+				+ "    FOREIGN KEY (`d_no`)\r\n" + "    REFERENCES `Projectlibre`.`detail` (`d_no`)\r\n" + "   )\r\n"
+				+ "ENGINE = InnoDB\r\n" + "DEFAULT CHARACTER SET = utf8;");
 
 		execute("use Projectlibre;");
 		execute("drop user if exists 'user'@'%'");
@@ -78,7 +73,7 @@ public class Setting {
 
 		execute("set global local_infile = 1");
 
-		for (String element : new String[] { "detail", "job", "member", "project", "time_sc" }) {
+		for (String element : new String[] { "project", "member", "job", "detail", "time_sc" }) {
 			execute("load data local infile './지급자료/" + element + ".txt' into table " + element
 					+ " fields terminated by '\t' lines terminated by '\n' ignore 1 lines");
 		}
