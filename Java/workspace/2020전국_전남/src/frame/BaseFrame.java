@@ -14,6 +14,7 @@ import java.sql.Statement;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -88,7 +89,7 @@ public class BaseFrame extends JFrame {
 		frame.setVisible(true);
 	}
 
-	public void changePage(JPanel openPanel) {
+	public static void changePage(JPanel openPanel) {
 		MainFrame.centerPanel.removeAll();
 		MainFrame.centerPanel.add(openPanel);
 		MainFrame.centerPanel.revalidate();
@@ -98,5 +99,9 @@ public class BaseFrame extends JFrame {
 	public static void setDefaultColor(JPanel panel) {
 		panel.setBackground(Color.white);
 		panel.setBorder(new LineBorder(Color.gray));
+	}
+
+	public static void openDialog(JDialog dialog) {
+		dialog.setVisible(true);
 	}
 }
