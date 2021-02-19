@@ -91,7 +91,6 @@ public class MainPage extends BasePage {
 
 		center_center.add(imagePanel);
 
-		southPanel.add(new JLabel("컨텐츠들이 들어갈 자리 히히"));
 
 		add(centerPanel);
 		add(southPanel, BorderLayout.SOUTH);
