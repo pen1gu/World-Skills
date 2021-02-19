@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JProgressBar;
+
 public class Setting {
 
 	static Connection connection;
@@ -27,6 +29,8 @@ public class Setting {
 			e.printStackTrace();
 		}
 	}
+
+	static JProgressBar progressBar = new JProgressBar();
 
 	public static void main(String[] args) {
 		execute("drop database if exists computer");
