@@ -26,7 +26,7 @@ import javax.swing.border.LineBorder;
 
 import frame.HallSearchForm.WeddingContent;
 
-public class ReservationForm extends BaseFrame { // 예약 부분 만들다가 너무 많아서 기능 부분만 구현 
+public class ReservationForm extends BaseFrame { // 예약 부분 만들다가 너무 많아서 기능 부분만 구현
 
 	JPanel imgPanel = new JPanel(new BorderLayout());
 	JLabel lbImg = createComponent(new JLabel(), 460, 230);// panel로 변경
@@ -97,7 +97,7 @@ public class ReservationForm extends BaseFrame { // 예약 부분 만들다가 �
 		/*
 		 * textFields[0] = content.name; textFields[1] = content.addr; textFields[2] =
 		 * content.person; textFields[3] = content.price;
-		 */		textFields[4].setText("");
+		 */ textFields[4].setText("");
 
 		insertImageList();
 		setImage();
@@ -168,6 +168,7 @@ public class ReservationForm extends BaseFrame { // 예약 부분 만들다가 �
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		JOptionPane.showInternalOptionDialog(null, "예약이 완료되었습니다.\n예약번호는 " + reservationNum + "", "예약완료", 0,
 				JOptionPane.INFORMATION_MESSAGE, null, new String[] { "클립보드에 복사", "확인" }, "안녕안녕");
 	}
