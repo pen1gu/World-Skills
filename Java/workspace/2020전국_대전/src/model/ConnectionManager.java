@@ -65,7 +65,8 @@ public class ConnectionManager { // connection manager는 다시 생각해보자
 	public ResultSet getSqlResults(String sql, Object... objects) { // object 사용하는 부분은 보류
 		ResultSet rs = null;
 
-		try (PreparedStatement pst = connection.prepareStatement(sql)) {
+		try {
+			pst = connection.prepareStatement(sql);
 			for (int i = 0; i < objects.length; i++) {
 				pst.setObject(i + 1, objects[i]);
 			}
