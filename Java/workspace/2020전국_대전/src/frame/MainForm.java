@@ -68,7 +68,7 @@ public class MainForm extends BaseFrame {
 		ConnectionManager connectionManager = new ConnectionManager();
 		connectionManager.connect();
 
-		try  {
+		try {
 			ResultSet rs = connectionManager.getSqlResults("select * from reservation where rno = ?;", returnValue);
 			if (rs.next()) {
 				openFrame(new ReservationCheckForm());
