@@ -49,7 +49,7 @@ public class ProductInfoForm extends BaseFrame {
 		taExplanation.append(explanation);
 
 		add(createComponent(createButton("구매하기", e -> buyProduct()), 330, 210, 100, 30));
-		add(createComponent(createButton("취소하기", e -> openFrame(new ProductForm())), 450, 210, 100, 30));
+		add(createComponent(createButton("취소하기", e -> dispose()), 450, 210, 100, 30));
 
 		JPanel southPanel = createComponent(new JPanel(new BorderLayout()), 0, 240, 600, 160);
 		JPanel south_center = createComponent(new JPanel(null), 600, 140);
@@ -77,7 +77,7 @@ public class ProductInfoForm extends BaseFrame {
 		new Thread(() -> {
 			while (true) {
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(3000);
 					for (int i = 0; i < 100; i++) {
 						for (int j = 0; j < list.size(); j++) {
 							list.get(j).setLocation(list.get(j).location().x - 1, 0);
@@ -108,7 +108,7 @@ public class ProductInfoForm extends BaseFrame {
 
 		int yesNo = JOptionPane.showConfirmDialog(null, "총 가격이 " + tfPrice.getText() + "원 입니다.\n결제하시겠습니까?", "결제",
 				JOptionPane.YES_NO_OPTION);
-		if (yesNo != 1) {
+		if (yesNo != 1) {//TODO : 결제 폼 완성
 
 		}
 
