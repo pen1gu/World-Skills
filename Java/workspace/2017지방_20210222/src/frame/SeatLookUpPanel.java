@@ -167,7 +167,7 @@ public class SeatLookUpPanel extends JPanel {
 			}
 		}
 
-		MainFrame.card.show(MainFrame.centerPanel, "reservation");
+		MainFrame.card.show(MainFrame.centerPanel, "ticket");
 		MainFrame.toggleButtons[2].setSelected(false);
 		MainFrame.toggleButtons[3].setSelected(true);
 	}
