@@ -66,7 +66,7 @@ public class TicketReleasePanel extends JPanel {
 		scrollPane.setVisible(true);
 
 		try (PreparedStatement pst = connection.prepareStatement(
-				"select bDeparture, bArrival, tt.bPrice,date_format(now(),'%Y-%m-%d'),bDate,bNumber2 from tbl_ticket as tt inner join tbl_bus as tb on tt.bNumber = tb.bNumber where bDate = date_format(?,'%Y-%m-%d') and tt.bNumber = ? and bNumber2 = ? and cID = ?;")) {
+				"select bDeparture, bArrival, tt.bPrice,bDate,bNumber2 from tbl_ticket as tt inner join tbl_bus as tb on tt.bNumber = tb.bNumber where bDate = date_format(?,'%Y-%m-%d') and tt.bNumber = ? and bNumber2 = ? and cID = ?;")) {
 
 			pst.setObject(1, tfStartDate.getText());
 			pst.setObject(2, tfPrimary.getText());
@@ -75,34 +75,51 @@ public class TicketReleasePanel extends JPanel {
 
 			ResultSet rs = pst.executeQuery();
 
-			if (rs.next()) {
-				JOptionPane.showMessageDialog(null, "승차권이 정상적으로 발권되었습니다.", "웹 페이지 메시지", JOptionPane.WARNING_MESSAGE);
+			// TODO: 업데이트
 
-				int aToward = 1, bToward = 2;
-				if (rs.getObject(6).equals("2호차")) {
-					aToward = 2;
-					bToward = 1;
-				}
+			int aToward = 1, bToward = 2;
+			if (tfCarNum.getText().equals("2호차")) {
+				aToward = 2;
+				bToward = 1;
+			}
 
-				model.addRow(new Object[] { rs.getObject(aToward), "", rs.getObject(bToward) });
-				model.addRow(new Object[] { "", "", "" });
-				model.addRow(new Object[] { "운행요금", "할인요금", "영수액" });
-				model.addRow(new Object[] { rs.getInt(3), rs.getInt(3) / 10, rs.getInt(3) - rs.getInt(3) / 10 });
-				model.addRow(new Object[] { "", "", "" });
-				model.addRow(new Object[] { "발권날짜", "", "출발일자" });
+			int amount = 0;
 
-				model.addRow(new Object[] { rs.getObject(4), "", rs.getObject(5) });
-				for (int i = 0; i < 3; i++) {
-					table.getColumnModel().getColumn(i).setCellRenderer(centerRender);
-				}
+			String startStation = "", endStation = "";
+			String ticketDate = "";
 
-				for (int i = 0; i < model.getRowCount(); i++) {
-					table.setRowHeight(30);
-				}
-			} else {
+			while (rs.next()) {
+				amount += rs.getInt(3);
+				startStation = rs.getString(aToward);
+				endStation = rs.getString(bToward);
+				ticketDate = rs.getString(4);
+			}
+
+			int sellPrice = tfUserId.getText().equals("비회원") ? 0 : amount / 10;
+
+			model.addRow(new Object[] { startStation, "", endStation });
+			model.addRow(new Object[] { "", "", "" });
+			model.addRow(new Object[] { "운행요금", "할인요금", "영수액" });
+			model.addRow(new Object[] { amount, sellPrice, amount - sellPrice });
+			model.addRow(new Object[] { "", "", "" });
+			model.addRow(new Object[] { "발권날짜", "", "출발일자" });
+			model.addRow(new Object[] { ticketDate, "", startDate });
+
+			for (int i = 0; i < 3; i++) {
+				table.getColumnModel().getColumn(i).setCellRenderer(centerRender);
+			}
+
+			for (int i = 0; i < model.getRowCount(); i++) {
+				table.setRowHeight(30);
+			}
+
+			if (amount == 0) {
 				JOptionPane.showMessageDialog(null, "조회한 정보가 존재하지 않습니다.", "웹 페이지 메시지", JOptionPane.WARNING_MESSAGE);
+				scrollPane.setVisible(false);
 				return;
 			}
+
+			JOptionPane.showMessageDialog(null, "승차권이 정상적으로 발권되었습니다.", "웹 페이지 메시지", JOptionPane.WARNING_MESSAGE);
 
 			centerPanel.revalidate();
 			centerPanel.repaint();
