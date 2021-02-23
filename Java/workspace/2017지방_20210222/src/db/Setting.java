@@ -49,7 +49,7 @@ public class Setting {
 
 		execute("set global local_infile=1");
 
-		for (String element : new String[] { "file1","file2","file3" }) {
+		for (String element : new String[] { "tbl_bus","tbl_customer","tbl_ticket" }) {
 			execute("load data local infile './지급자료/" + element + ".txt' into table " + element
 					+ " fields terminated by '\t' lines terminated by '\n' ignore 1 lines");
 		}
