@@ -85,7 +85,7 @@ public class ReservationApplyPanel extends JPanel {
 				Integer.parseInt(cbMonth.getSelectedItem().toString().substring(0, 2)), 1);
 
 		for (int i = 1; i <= localDate.lengthOfMonth(); i++) {
-			cbDay.addItem(String.format("%02d월", i));
+			cbDay.addItem(String.format("%02d일", i));
 		}
 	}
 
@@ -113,7 +113,5 @@ public class ReservationApplyPanel extends JPanel {
 
 		tableData.formatDate();
 		SeatLookUpPanel.tfStartDate.setText(tableData.getDate());
-
-		SeatLookUpPanel.tfUserId.setText(userName);
 	}
 }
