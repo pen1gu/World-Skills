@@ -1,10 +1,6 @@
 package frame;
 
-import static frame.BaseFrame.connection;
-import static frame.BaseFrame.createButton;
-import static frame.BaseFrame.createComponent;
-import static frame.BaseFrame.createLabel;
-import static frame.BaseFrame.userName;
+import static frame.BaseFrame.*;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -13,8 +9,13 @@ import java.awt.Font;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -36,10 +37,13 @@ public class SeatLookUpPanel extends JPanel {
 
 	JTextField tfStartDate_under = new JTextField();
 	JTextField tfPrimary_under = new JTextField();
-	JTextField tfCarnum_under = new JTextField();
-	static JTextField tfUserId = new JTextField();
+	JTextField tfSeatNum = new JTextField();
+	JTextField tfUserId = new JTextField();
 
 	TableData tableData;
+
+	ArrayList<Integer> reservationList = new ArrayList<Integer>();
+	Map<String, Integer> priceMap = new HashMap<String, Integer>();
 
 	public SeatLookUpPanel(TableData tableData) {
 		this.tableData = tableData;
@@ -69,7 +73,7 @@ public class SeatLookUpPanel extends JPanel {
 		southPanel.add(new JLabel("차량번호"));
 		southPanel.add(createComponent(tfPrimary_under, 90, 20));
 		southPanel.add(new JLabel("좌석번호"));
-		southPanel.add(createComponent(tfCarnum_under, 90, 20));
+		southPanel.add(createComponent(tfSeatNum, 90, 20));
 		southPanel.add(new JLabel("회원ID"));
 		southPanel.add(createComponent(tfUserId, 90, 20));
 		southPanel.add(createButton("예약", e -> clickSubmit()));
@@ -80,7 +84,18 @@ public class SeatLookUpPanel extends JPanel {
 		tableData.formatDate();
 		tfStartDate.setText(tableData.getDate());
 
-		tfUserId.setText(userName);
+		tfUserId.setText(userId);
+
+		try {
+			ResultSet rs = statement.executeQuery("select bPrice from tbl_bus;");
+			int i = 1;
+			while (rs.next()) {
+				priceMap.put(String.format("A0%02d", i), rs.getInt(1));
+				i++;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		add(northPanel, BorderLayout.NORTH);
 		add(centerPanel);
@@ -89,7 +104,72 @@ public class SeatLookUpPanel extends JPanel {
 	}
 
 	public void clickSubmit() {
+		if (tfSeatNum.getText().trim().isEmpty()) {
+			informationMessage("좌석번호를 입력해주십시오.");
+			return;
+		}
 
+		String[] seatArr = tfSeatNum.getText().split(",| ");
+		Integer[] seatArr_int = new Integer[seatArr.length];
+		try {
+			for (int i = 0; i < seatArr.length; i++) {
+				seatArr_int[i] = Integer.parseInt(seatArr[i]);
+				if (seatArr_int[i] > 20 || seatArr_int[i] < 0)
+					throw new Exception();
+			}
+		} catch (Exception e) {
+			informationMessage("올바르지 못한 좌석정보입니다.");
+			return;
+		}
+
+		String duplicateArr = duplicateCheck(seatArr_int);
+
+		if (duplicateArr.length() > 0) {
+			informationMessage("좌석번호 " + duplicateArr.substring(2, duplicateArr.length()) + "이(가) 중복입력되었습니다.");
+			return;
+		}
+
+		for (int i = 0; i < reservationList.size(); i++) {
+			for (int j = 0; j < seatArr_int.length; j++) {
+				if (reservationList.get(i) == seatArr_int[j]) {
+					informationMessage("좌석번호 " + reservationList.get(i) + "은 이미 예약되어 있는 좌석입니다.");
+					return;
+				}
+			}
+		}
+
+		int yesNo = JOptionPane.showConfirmDialog(null,
+				"차량번호[" + tfCarPrimary.getText() + "]\n예약일자[" + tfStartDate_under.getText() + "]\n좌석번호["
+						+ tfSeatNum.getText() + "]\n고객번호[" + tfUserId.getText() + "]\n예약하시겠습니까?",
+				"웹 페이지 메시지", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+		if (yesNo != JOptionPane.YES_OPTION) {
+			return;
+		}
+
+		for (int i = 0; i < seatArr_int.length; i++) {
+			try (PreparedStatement pst = connection.prepareStatement("insert into tbl_ticket values(?,?,?,?,?,?,?)")) {
+				pst.setObject(1, tfStartDate_under.getText());
+				pst.setObject(2, tfCarPrimary.getText());
+				pst.setObject(3, tfCarNum.getText());
+				pst.setObject(4, seatArr[i]);
+				pst.setObject(5, tfUserId.getText());
+				pst.setObject(6, priceMap.get(tfCarPrimary.getText()));
+				pst.setObject(7, "X");
+
+				pst.execute();
+				JOptionPane.showMessageDialog(null,
+						"차량번호[" + tfCarPrimary.getText() + "]\n예약일자[" + tfStartDate_under.getText() + "]\n좌석번호["
+								+ tfSeatNum.getText() + "]\n고객번호[" + tfUserId.getText() + "]\n예약되었습니다.",
+						"웹 페이지 메시지", JOptionPane.WARNING_MESSAGE);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		MainFrame.card.show(MainFrame.centerPanel, "reservation");
+		MainFrame.toggleButtons[2].setSelected(false);
+		MainFrame.toggleButtons[3].setSelected(true);
 	}
 
 	public void lookUpSeat() {
@@ -99,35 +179,75 @@ public class SeatLookUpPanel extends JPanel {
 
 		model.setRowCount(0);
 
-		ArrayList<Integer> list = new ArrayList<Integer>();
 		try (PreparedStatement pst = connection.prepareStatement(
-				"select bseat from tbl_ticket where bNumber = ? and bDate = bDate = DATE_FORMAT(?,'%Y%m%d') and bNumber2 = ?;")) {
+				"select bseat from tbl_ticket where bNumber = ? and bDate = DATE_FORMAT(?,'%Y%m%d') and bNumber2 = ?;")) {
 			pst.setObject(1, tfCarPrimary.getText());
 			pst.setObject(2, tfStartDate.getText());
 			pst.setObject(3, tfCarNum.getText());
 
 			ResultSet rs = pst.executeQuery();
 
+			ArrayList<Integer> list = new ArrayList<Integer>();
+
 			while (rs.next()) {
 				list.add(rs.getInt(1));
+				reservationList.add(rs.getInt(1));
 			}
 
-			int count = 0;
+			int count = 1, showCount = 1;
 
 			for (int i = 0; i < 5; i++) {
-				model.addRow(new Object[] { ++count, "", ++count, "", "--", ++count, "", ++count, "" });
-				for (int j = 0; j < 9; i++) {
-					if (j == 0 || j == 2 || j == 5 || j == 7) {
-						table.getColumnModel().getColumn(j).setPreferredWidth(100);
+				String[] arr = new String[4];
+
+				for (int j = 0; j < 4; j++) {
+					for (int k = 0; k < list.size(); k++) {
+						if (count == list.get(k)) {
+							arr[(list.get(k) - 1) % 4] = "O";
+							list.remove(k);
+						}
 					}
+					count++;
 				}
+				model.addRow(new Object[] { showCount++, arr[0], showCount++, arr[1], "--", showCount++, arr[2],
+						showCount++, arr[3] });
+			}
+
+			for (int j = 0; j < 9; j++) {
+				if (j == 0 || j == 2 || j == 5 || j == 7) {
+					table.getColumnModel().getColumn(j).setPreferredWidth(120);
+				}
+				table.getColumnModel().getColumn(j).setCellRenderer(centerRender);
 			}
 
 			repaint();
-//			System.out.println(model.getValueAt(1, 1));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		tfStartDate_under.setText(tfStartDate.getText());
+		tfPrimary_under.setText(tfCarPrimary.getText());
 	}
 
+	private String duplicateCheck(Integer[] arr) {
+		Arrays.sort(arr);
+
+		StringBuilder builder = new StringBuilder();
+
+		List<Integer> duplicateList = new ArrayList<Integer>();
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = i + 1; j < arr.length; j++) {
+				if (arr[i].equals(arr[j])) {
+					if (duplicateList.contains(arr[j]))
+						break;
+
+					builder.append(", ");
+					builder.append(arr[j]);
+					duplicateList.add(arr[j]);
+					break;
+				}
+			}
+		}
+
+		return builder.toString();
+	}
 }
