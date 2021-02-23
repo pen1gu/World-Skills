@@ -109,12 +109,18 @@ public class SeatLookUpPanel extends JPanel {
 			return;
 		}
 
-		String[] seatArr = tfSeatNum.getText().split(",| ");
+		String[] seatArr = tfSeatNum.getText().trim().split(",|, | ");
 		Integer[] seatArr_int = new Integer[seatArr.length];
+		int count = 0;
 		try {
 			for (int i = 0; i < seatArr.length; i++) {
-				seatArr_int[i] = Integer.parseInt(seatArr[i]);
-				if (seatArr_int[i] > 20 || seatArr_int[i] < 0)
+				if (seatArr[i].equals("") && i != seatArr.length - 1) {
+					count++;
+					continue;
+				}
+
+				seatArr_int[i - count] = Integer.parseInt(seatArr[i]);
+				if (seatArr_int[i - count] > 20 || seatArr_int[i - count] < 0)
 					throw new Exception();
 			}
 		} catch (Exception e) {
@@ -129,18 +135,27 @@ public class SeatLookUpPanel extends JPanel {
 			return;
 		}
 
+		String result = "";
 		for (int i = 0; i < reservationList.size(); i++) {
 			for (int j = 0; j < seatArr_int.length; j++) {
 				if (reservationList.get(i) == seatArr_int[j]) {
-					informationMessage("좌석번호 " + reservationList.get(i) + "은 이미 예약되어 있는 좌석입니다.");
-					return;
+					result += reservationList.get(i) + " ";
+					break;
 				}
 			}
 		}
 
+		if (result.length() > 0) {
+			informationMessage("좌석번호 " + result.trim().replace(" ", ",").substring(0, result.length() - 1)
+					+ "은 이미 예약되어 있는 좌석입니다.");
+			return;
+
+		}
+
 		int yesNo = JOptionPane.showConfirmDialog(null,
 				"차량번호[" + tfCarPrimary.getText() + "]\n예약일자[" + tfStartDate_under.getText() + "]\n좌석번호["
-						+ tfSeatNum.getText() + "]\n고객번호[" + tfUserId.getText() + "]\n예약하시겠습니까?",
+						+ tfSeatNum.getText().trim().replace(" ", ",") + "]\n고객번호[" + tfUserId.getText()
+						+ "]\n예약하시겠습니까?",
 				"웹 페이지 메시지", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 		if (yesNo != JOptionPane.YES_OPTION) {
@@ -158,14 +173,18 @@ public class SeatLookUpPanel extends JPanel {
 				pst.setObject(7, "X");
 
 				pst.execute();
-				JOptionPane.showMessageDialog(null,
-						"차량번호[" + tfCarPrimary.getText() + "]\n예약일자[" + tfStartDate_under.getText() + "]\n좌석번호["
-								+ tfSeatNum.getText() + "]\n고객번호[" + tfUserId.getText() + "]\n예약되었습니다.",
-						"웹 페이지 메시지", JOptionPane.WARNING_MESSAGE);
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
 		}
+
+		JOptionPane.showMessageDialog(null,
+				"차량번호[" + tfCarPrimary.getText() + "]\n예약일자[" + tfStartDate_under.getText() + "]\n좌석번호["
+						+ tfSeatNum.getText().trim().replace(" ", ",") + "]\n고객번호[" + tfUserId.getText()
+						+ "]\n예약되었습니다.",
+				"웹 페이지 메시지", JOptionPane.WARNING_MESSAGE);
 
 		MainFrame.card.show(MainFrame.centerPanel, "ticket");
 		MainFrame.toggleButtons[2].setSelected(false);
@@ -178,9 +197,10 @@ public class SeatLookUpPanel extends JPanel {
 		}
 
 		model.setRowCount(0);
+		reservationList.clear();
 
 		try (PreparedStatement pst = connection.prepareStatement(
-				"select bseat from tbl_ticket where bNumber = ? and bDate = DATE_FORMAT(?,'%Y%m%d') and bNumber2 = ?;")) {
+				"select distinct bseat from tbl_ticket where bNumber = ? and bDate = DATE_FORMAT(?,'%Y%m%d') and bNumber2 = ?;")) {
 			pst.setObject(1, tfCarPrimary.getText());
 			pst.setObject(2, tfStartDate.getText());
 			pst.setObject(3, tfCarNum.getText());
@@ -223,6 +243,8 @@ public class SeatLookUpPanel extends JPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		tfStartDate_under.setEnabled(false);
+		tfPrimary_under.setEnabled(false);
 
 		tfStartDate_under.setText(tfStartDate.getText());
 		tfPrimary_under.setText(tfCarPrimary.getText());
