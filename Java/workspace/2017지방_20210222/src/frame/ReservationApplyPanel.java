@@ -13,6 +13,7 @@ import java.time.LocalDate;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import model.TableData;
@@ -81,6 +82,7 @@ public class ReservationApplyPanel extends JPanel {
 
 	public void changeDate(ActionEvent e) {
 		cbDay.removeAllItems();
+		cbDay.addItem("==일 선택==");
 		LocalDate localDate = LocalDate.of(LocalDate.now().getYear(),
 				Integer.parseInt(cbMonth.getSelectedItem().toString().substring(0, 2)), 1);
 
@@ -93,10 +95,12 @@ public class ReservationApplyPanel extends JPanel {
 		String month = (String) cbMonth.getSelectedItem();
 		String day = (String) cbDay.getSelectedItem();
 
-		if (month.equals("==일 선택==") || day.equals("==월 선택==")) {
+		if (day.equals("==일 선택==") || month.equals("==월 선택==")) {
 			informationMessage("월 또는 일을 선택하여 주십시오.");
 			return;
 		}
+
+		JOptionPane.showMessageDialog(null, "예약이 시작됩니다.", "웹 페이지 메시지", JOptionPane.WARNING_MESSAGE);
 
 		tableData.setCarPrimary((String) cbPrimary.getSelectedItem());
 		tableData.setCarNum((String) cbCarNum.getSelectedItem());
