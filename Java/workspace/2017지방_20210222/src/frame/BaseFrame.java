@@ -42,6 +42,7 @@ public class BaseFrame extends JFrame {
 
 		userId = "user01";
 		userName = "강**";
+		
 		centerRender = new DefaultTableCellRenderer();
 		centerRender.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
 	}
