@@ -166,20 +166,29 @@ public class TicketReleaseForm extends BaseFrame {
 
 		// 맞았다는 가정하에
 
+		String currentTime = "";
+		try {
+			ResultSet rs = statement.executeQuery("select now()");
+			currentTime = rs.getString(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		for (int i = 0; i < buttonList.size(); i++) {
-			try (PreparedStatement pst = connection
-					.prepareStatement("insert into orderlist values(0,?,?,?,?,?,now())")) {
+			try (PreparedStatement pst = connection.prepareStatement("insert into orderlist values(0,?,?,?,?,?,?)")) {
 				pst.setObject(1, kindNo);
 				pst.setObject(2, buttonList.get(i).productNo);
 				pst.setObject(3, ""); // cb selected
 				pst.setObject(4, model.getValueAt(i, 2));
 				pst.setObject(5, model.getValueAt(i, 3));
+				pst.setObject(6, currentTime);
 
-				informationMsg("결제가 완료되었습니다.\n식권을 출력합니다.");
-				openFrame(new TicketListFrame());
+				pst.execute();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
+			informationMsg("결제가 완료되었습니다.\n식권을 출력합니다.");
+			openFrame(new TicketListFrame(buttonList.size(), kindNo, currentTime));
 		}
 	}
 
