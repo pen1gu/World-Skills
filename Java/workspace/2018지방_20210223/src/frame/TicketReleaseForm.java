@@ -84,7 +84,6 @@ public class TicketReleaseForm extends BaseFrame {
 		///// east
 		eastPanel.add(createComponent(createLabel(new JLabel("총결제금액:"), new Font("굴림", Font.BOLD, 18)), 330, 30));
 		eastPanel.add(createComponent(lbAmount, 70, 30));
-		lbAmount.setBorder(new LineBorder(Color.black));
 
 		eastPanel.add(scrollPane);
 		eastPanel.add(new JLabel("선택품명:"));
@@ -149,7 +148,7 @@ public class TicketReleaseForm extends BaseFrame {
 	}
 
 	private void clickBuy() {
-		if (table.getSelectedRow() == -1) {
+		if (model.getRowCount() == 0) {
 			errorMsg("메뉴를 선택해 주세요.");
 			return;
 		}
@@ -162,34 +161,41 @@ public class TicketReleaseForm extends BaseFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 //		int yesNo = JOptionPane.showMessageDialog(parentComponent, message, title, messageType);
 
 		// 맞았다는 가정하에
 
 		String currentTime = "";
+		String[] menuArr = new String[buttonList.size()];
+
 		try {
 			ResultSet rs = statement.executeQuery("select now()");
+			rs.next();
 			currentTime = rs.getString(1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		for (int i = 0; i < buttonList.size(); i++) {
 			try (PreparedStatement pst = connection.prepareStatement("insert into orderlist values(0,?,?,?,?,?,?)")) {
 				pst.setObject(1, kindNo);
 				pst.setObject(2, buttonList.get(i).productNo);
-				pst.setObject(3, ""); // cb selected
+				pst.setObject(3, "10010"); // cb selected
 				pst.setObject(4, model.getValueAt(i, 2));
 				pst.setObject(5, model.getValueAt(i, 3));
 				pst.setObject(6, currentTime);
+
+				menuArr[i] = buttonList.get(i).name;
 
 				pst.execute();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
-			informationMsg("결제가 완료되었습니다.\n식권을 출력합니다.");
-			openFrame(new TicketListFrame(buttonList.size(), kindNo, currentTime));
 		}
+		informationMsg("결제가 완료되었습니다.\n식권을 출력합니다.");
+		openFrame(new TicketListFrame(buttonList.size(), kindNo, currentTime, menuArr));
 	}
 
 	private class MenuButton extends JButton {
