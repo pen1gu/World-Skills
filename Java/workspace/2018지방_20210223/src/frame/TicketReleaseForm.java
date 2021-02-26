@@ -1,7 +1,6 @@
 package frame;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -17,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 public class TicketReleaseForm extends BaseFrame {
@@ -35,6 +33,8 @@ public class TicketReleaseForm extends BaseFrame {
 			return false;
 		};
 	};
+
+	int enabledCount = 0;
 	JTable table = new JTable(model);
 	int kindNo = 0;
 	ArrayList<MenuButton> buttonList = new ArrayList<MenuButton>();
@@ -127,7 +127,7 @@ public class TicketReleaseForm extends BaseFrame {
 		int count;
 		try {
 			if (tfCurrentProductName.getText().isEmpty()) {
-				return;
+				throw new NumberFormatException();
 			}
 			count = Integer.parseInt(tfCount.getText());
 		} catch (NumberFormatException e1) {
@@ -161,13 +161,16 @@ public class TicketReleaseForm extends BaseFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		//TODO: 확인 패널 개발
 //		int yesNo = JOptionPane.showMessageDialog(parentComponent, message, title, messageType);
 
 		// 맞았다는 가정하에
 
 		String currentTime = "";
 		String[] menuArr = new String[buttonList.size()];
+		int[] mealNoArr = new int[buttonList.size()];
+		int[] mealCount = new int[buttonList.size()];
+		int[] menuPriceArr = new int[buttonList.size()];
 
 		try {
 			ResultSet rs = statement.executeQuery("select now()");
@@ -177,25 +180,26 @@ public class TicketReleaseForm extends BaseFrame {
 			e.printStackTrace();
 		}
 
-		for (int i = 0; i < buttonList.size(); i++) {
+		for (int i = 0; i < model.getRowCount(); i++) {
 			try (PreparedStatement pst = connection.prepareStatement("insert into orderlist values(0,?,?,?,?,?,?)")) {
 				pst.setObject(1, kindNo);
-				pst.setObject(2, buttonList.get(i).productNo);
+				pst.setObject(2, model.getValueAt(i, 0));
 				pst.setObject(3, "10010"); // cb selected
 				pst.setObject(4, model.getValueAt(i, 2));
 				pst.setObject(5, model.getValueAt(i, 3));
 				pst.setObject(6, currentTime);
 
-				menuArr[i] = buttonList.get(i).name;
-
 				pst.execute();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
+			mealNoArr[i] = (int) model.getValueAt(i, 0);
+			menuArr[i] = (String) model.getValueAt(i, 1);
+			mealCount[i] = (int) model.getValueAt(i, 2);
+			menuPriceArr[i] = (int) model.getValueAt(i, 3);
 		}
 		informationMsg("결제가 완료되었습니다.\n식권을 출력합니다.");
-		openFrame(new TicketListFrame(buttonList.size(), kindNo, currentTime, menuArr));
+		openFrame(new TicketListFrame(mealCount, kindNo, menuArr, mealNoArr, menuPriceArr));
 	}
 
 	private class MenuButton extends JButton {

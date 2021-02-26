@@ -14,59 +14,70 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.LineBorder;
 
 public class TicketListFrame extends BaseFrame {
 
 	int kindNo = 0;
-	String currentTime;
 	String[] menuArr;
+	int[] mealNoArr;
 
-	public TicketListFrame(int productCount, int kindNo, String currentTime, String[] menuArr) {
-		super(300, 600, "식권");
+	public TicketListFrame(int[] productCount, int kindNo, String[] menuArr, int[] mealNoArr, int[] menuPriceArr) {
+		super(300, 500, "식권");
 		this.kindNo = kindNo;
-		this.currentTime = currentTime;
 		this.menuArr = menuArr;
+		this.mealNoArr = mealNoArr;
 
-		JPanel contentsPanel = createComponent(new JPanel(), 280, 600);
-		JScrollPane pane = createComponent(new JScrollPane(), 300, 600);
+		setLayout(new BorderLayout());
 
-		for (int i = 0; i < productCount; i++) {
-			pane.add(new ProductPanel(i));
+		JPanel contentsPanel = createComponent(new JPanel(new FlowLayout()), 260, 600);
+		JScrollPane pane = createComponent(new JScrollPane(contentsPanel), 300, 600);
+
+		int amount = 0, colorCount = 0;
+		for (int i = 0; i < productCount.length; i++) {
+			for (int j = 0; j < productCount[i]; j++) {
+				Color color = null;
+				if (colorCount % 2 == 0) {
+					color = Color.cyan;
+				} else {
+					color = Color.pink;
+				}
+
+				contentsPanel.add(new ProductPanel(i, menuPriceArr[i], color, productCount[i]));
+				colorCount++;
+			}
+			amount += productCount[i];
 		}
+
+		contentsPanel.setPreferredSize(new Dimension(300, 160 * amount));
+		contentsPanel.revalidate();
+
+		add(pane);
 	}
 
+	int count = 1;
+
 	class ProductPanel extends JPanel {
-		public ProductPanel(int index) {
-			setPreferredSize(new Dimension(300, 290));
+		public ProductPanel(int index, int price, Color color, int mealAmount) {
+			setPreferredSize(new Dimension(280, 150));
 			setLayout(new FlowLayout(FlowLayout.LEFT));
 
 			LocalDate date = LocalDate.now();
 			LocalDateTime dateTime = LocalDateTime.now();
-			JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-			JPanel southPanel = new JPanel();
-
-			add(new JLabel(date.format(DateTimeFormatter.ofPattern("yyyyMMdd")).toString() + " "
-					+ dateTime.format(DateTimeFormatter.ofPattern("HHmmss")) + userNo + "-" + kindNo),
+			setBackground(color);
+			setBorder(new LineBorder(Color.black));
+			add(new JLabel(date.format(DateTimeFormatter.ofPattern("yyyyMMdd")).toString() + ""
+					+ dateTime.format(DateTimeFormatter.ofPattern("HHmmss")) + "-" + userNo + "-" + kindNo),
 					BorderLayout.NORTH);
 
-			try (PreparedStatement pst = connection
-					.prepareStatement("select * from product where orderDate = ? and memberNo = ?")) {
-				pst.setObject(1, currentTime);
-				pst.setObject(2, userNo);
-
-				ResultSet rs = pst.executeQuery();
-				if (rs.next()) {
-					centerPanel.add(createComponent(createLabel(new JLabel("식권"), new Font("굴림", 1, 26)), 200, 40));
-					centerPanel.add(createComponent(createLabel(new JLabel(String.format("%,d원", rs.getObject(6))),
-							new Font("굴림", Font.BOLD, 12)), 200, 50));
-
-					southPanel.add(new JLabel("메뉴: " + menuArr[index]));
-					southPanel.add(createComponent(new JLabel(index + "/" + kindNo), 100, 20));
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
+			add(createComponent(createLabel(new JLabel("식권", 0), new Font("굴림", 1, 26)), 250, 40));
+			add(createComponent(createLabel(new JLabel(String.format("%,d원", price/mealAmount, 0),0), new Font("굴림", Font.BOLD, 32)),
+					250, 50));
+			if (count == mealAmount+1)
+				count = 1;
+			add(new JLabel("메뉴: " + menuArr[index]));
+			add(createComponent(new JLabel(count + "/" + mealAmount), 100, 20));
+			count++;
 		}
 	}
 }
