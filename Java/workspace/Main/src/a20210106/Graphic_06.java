@@ -36,7 +36,6 @@ class DoubleDice extends JPanel {
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 				super.mousePressed(e);
 				roll();
 			}
@@ -45,7 +44,6 @@ class DoubleDice extends JPanel {
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
 		super.paintComponent(g);
 		drawDice(g, dice1, 10, 10);
 		drawDice(g, dice2, 60, 60);
