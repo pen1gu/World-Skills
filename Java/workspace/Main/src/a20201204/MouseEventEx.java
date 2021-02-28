@@ -23,7 +23,7 @@ public class MouseEventEx extends JFrame {
 		label.setSize(50, 20);
 
 		addMouseListener(new MyMouseListener());
-		
+
 		container.add(label);
 	}
 
@@ -35,13 +35,11 @@ public class MouseEventEx extends JFrame {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
 			label.setLocation(e.getX(), e.getY());
 		}
 
@@ -52,13 +50,11 @@ public class MouseEventEx extends JFrame {
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
 			container.setBackground(Color.cyan);
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
 			container.setBackground(Color.yellow);
 		}
 
