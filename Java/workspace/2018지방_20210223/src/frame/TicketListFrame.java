@@ -71,9 +71,9 @@ public class TicketListFrame extends BaseFrame {
 					BorderLayout.NORTH);
 
 			add(createComponent(createLabel(new JLabel("식권", 0), new Font("굴림", 1, 26)), 250, 40));
-			add(createComponent(createLabel(new JLabel(String.format("%,d원", price/mealAmount, 0),0), new Font("굴림", Font.BOLD, 32)),
-					250, 50));
-			if (count == mealAmount+1)
+			add(createComponent(createLabel(new JLabel(String.format("%,d원", price / mealAmount, 0), 0),
+					new Font("굴림", Font.BOLD, 32)), 250, 50));
+			if (count == mealAmount + 1)
 				count = 1;
 			add(new JLabel("메뉴: " + menuArr[index]));
 			add(createComponent(new JLabel(count + "/" + mealAmount), 100, 20));
