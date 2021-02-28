@@ -29,7 +29,6 @@ public class MouseListenerEx extends JFrame {
 	class MouseEventListener extends MouseAdapter {
 		@Override
 		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
 			super.mousePressed(e);
 			container.setBackground(
 					new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256)));
