@@ -36,13 +36,11 @@ public class MainFrame extends BaseFrame {
 		northPanel.add(createButton("일정관리", e -> new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 			}
 		}));
 		northPanel.add(createButton("보고서", e -> new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 			}
 		}));
 
