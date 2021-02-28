@@ -161,7 +161,9 @@ public class TicketReleaseForm extends BaseFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//TODO: 확인 패널 개발
+		// TODO: 확인 패널 개발
+		
+		JPanel panel = new JPanel();
 //		int yesNo = JOptionPane.showMessageDialog(parentComponent, message, title, messageType);
 
 		// 맞았다는 가정하에
