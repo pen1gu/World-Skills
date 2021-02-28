@@ -33,7 +33,6 @@ public class TableDoubleClicker extends JFrame {
 
 //			@Override
 //			public boolean isCellEditable(int row, int column) {
-//				// TODO Auto-generated method stub
 //				return false;
 //			}
 
@@ -60,7 +59,6 @@ public class TableDoubleClicker extends JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				super.mouseClicked(e);
 
 				if (e.getClickCount() == 2) {
