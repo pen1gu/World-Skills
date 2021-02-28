@@ -38,7 +38,7 @@ public class TicketReleaseForm extends BaseFrame {
 	JTable table = new JTable(model);
 	int kindNo = 0;
 	ArrayList<MenuButton> buttonList = new ArrayList<MenuButton>();
-	ArrayList<Integer> enabledList = new ArrayList<Integer>();
+	ArrayList<MenuButton> enabledList = new ArrayList<MenuButton>();
 	int currentBtnNo = 0;
 
 	public TicketReleaseForm(int kindNo) {
@@ -162,11 +162,9 @@ public class TicketReleaseForm extends BaseFrame {
 			e.printStackTrace();
 		}
 		// TODO: 확인 패널 개발
-		
+
 		JPanel panel = new JPanel();
 //		int yesNo = JOptionPane.showMessageDialog(parentComponent, message, title, messageType);
-
-		// 맞았다는 가정하에
 
 		String currentTime = "";
 		String[] menuArr = new String[buttonList.size()];
@@ -198,7 +196,16 @@ public class TicketReleaseForm extends BaseFrame {
 			mealNoArr[i] = (int) model.getValueAt(i, 0);
 			menuArr[i] = (String) model.getValueAt(i, 1);
 			mealCount[i] = (int) model.getValueAt(i, 2);
-			menuPriceArr[i] = (int) model.getValueAt(i, 3);
+			menuPriceArr[i] = (int) model.getValueAt(i, 3); // TODO: 객체화 고려
+
+			try (PreparedStatement pst = connection.prepareStatement("update meal set maxCount = ? where mealNo = ?")) {
+				pst.setObject(1, enabledList.get(i).maxCount - (int) model.getValueAt(i, 2));
+				pst.setObject(2, enabledList.get(i).productNo);
+
+				pst.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		informationMsg("결제가 완료되었습니다.\n식권을 출력합니다.");
 		openFrame(new TicketListFrame(mealCount, kindNo, menuArr, mealNoArr, menuPriceArr));
@@ -226,6 +233,7 @@ public class TicketReleaseForm extends BaseFrame {
 		private void insertInformation() {
 			currentBtnNo = index;
 			tfCurrentProductName.setText(name);
+			enabledList.add(this);
 			this.setEnabled(false);
 		}
 	}
