@@ -67,7 +67,6 @@ public class LoginPage extends BasePage {
 				return;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		connectionManager.close();
