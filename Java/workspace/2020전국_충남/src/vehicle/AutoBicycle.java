@@ -16,20 +16,17 @@
 //	
 //	@Override
 //	public void move() {
-//		// TODO Auto-generated method stub
 //		
 //	}
 //	
 //	@Override
 //	public void turn(int leftOrRight) {
-//		// TODO Auto-generated method stub
 //		
 //	}
 //
 //
 //	@Override
 //	public void move(JPanel[][] department) {
-//		// TODO Auto-generated method stub
 //		
 //	}
 //}
