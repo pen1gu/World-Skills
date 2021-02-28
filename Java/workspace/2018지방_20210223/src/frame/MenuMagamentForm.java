@@ -8,6 +8,7 @@ import java.awt.event.ItemListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.Year;
+import java.util.ArrayList;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
@@ -111,16 +112,13 @@ public class MenuMagamentForm extends BaseFrame {
 	}
 
 	public void clickUpdate() {
-		int i = 0;
+		int i = 0, selected = -1, cnt = 0;
 
-		int selected = -1;
-		int cnt = 0;
 		for (i = 0; i < table.getRowCount(); i++) {
-			if (checkBox.isSelected()) {
+			if ((boolean) model.getValueAt(i, 1) == true) {
 				selected = i;
 				cnt++;
 			}
-			System.out.println(checkBox.isSelected());
 		}
 
 		if (selected == -1) {
@@ -137,16 +135,79 @@ public class MenuMagamentForm extends BaseFrame {
 		UpdateMenu.menuName = (String) table.getValueAt(selected, 1);
 		UpdateMenu.price = (int) table.getValueAt(selected, 2);
 		UpdateMenu.amount = (int) table.getValueAt(selected, 3);
+		UpdateMenu.mealNo = (int) model.getValueAt(selected, 0);
 
 		openFrame(new MenuAddForm("메뉴 수정"));
 	}
 
 	public void clickDelete() {
+		int selected = -1, cnt = 0;
 
+		ArrayList<Integer> mealNoList = new ArrayList<Integer>();
+
+		for (int i = 0; i < table.getRowCount(); i++) {
+			if ((boolean) model.getValueAt(i, 1) == true) {
+				selected = i;
+				mealNoList.add((Integer) model.getValueAt(i, 0));
+			}
+		}
+
+		if (selected == -1) {
+			errorMsg("삭제할 메뉴를 선택해주세요.");
+			return;
+		}
+
+//		if (mealNoList.size() > 25) {
+//			errorMsg("25개를 초과할 수 없습니다.");
+//			return;
+//		}
+
+		for (int i = 0; i < mealNoList.size(); i++) {
+			try (PreparedStatement pst = connection.prepareStatement("delete from meal where mealNo = ?")) {
+				pst.setObject(1, mealNoList.get(i));
+
+				pst.execute();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		clickSearch();
 	}
 
 	public void setTodayMenu() {
+		int yesCount = 0;
 
+		ArrayList<Integer> mealNoList = new ArrayList<Integer>();
+
+		for (int i = 0; i < table.getRowCount(); i++) {
+			if (table.getValueAt(i, 4).equals("Y")) {
+				yesCount++;
+			}
+
+			if ((boolean) model.getValueAt(i, 0) == true) {
+				mealNoList.add((Integer) model.getValueAt(i, 0));
+			}
+		}
+
+		if ((yesCount + mealNoList.size()) > 25) {
+			informationMsg("25개를 초과할 수 없습니다.");
+			return;
+		}
+
+		for (int i = 0; i < mealNoList.size(); i++) {
+			try (PreparedStatement pst = connection
+					.prepareStatement("update meal set todayMeal = ?, where mealNo = ?")) {
+				pst.setObject(1, 1);
+				pst.setObject(2, mealNoList.get(i));
+
+				pst.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		clickSearch();
 	}
 
 	public void checkEmptyBox() {
