@@ -15,7 +15,7 @@ public class ManagementForm extends BaseFrame {
 
 		northPanel.add(createButton("메뉴등록", e -> openFrame(new MenuAddForm("신규 메뉴 등록"))));
 		northPanel.add(createButton("메뉴관리", e -> openFrame(new MenuMagamentForm())));
-		northPanel.add(createButton("결제조회", e -> openFrame(new PayFormLookUpForm())));
+		northPanel.add(createButton("결제조회", e -> openFrame(new PayLookUpForm())));
 		northPanel.add(createButton("메뉴별주분현황", e -> openFrame(new PayListForm())));
 		northPanel.add(createButton("종료", e -> openFrame(new MainForm())));
 
