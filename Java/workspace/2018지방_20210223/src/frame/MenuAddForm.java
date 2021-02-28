@@ -24,7 +24,7 @@ public class MenuAddForm extends BaseFrame {
 		setLayout(new GridLayout(0, 2));
 
 		initialize();
-		
+
 		if (caption.equals("신규 메뉴 등록")) {
 			setTitle(caption);
 			btnSubmit = createButton("등록", this::clickSubmit);
@@ -85,6 +85,19 @@ public class MenuAddForm extends BaseFrame {
 	}
 
 	public void clickUpdate(ActionEvent e) {
-		// TODO: 누를 시 쿼리 업데이트
+		try (PreparedStatement pst = connection.prepareStatement(
+				"update meal set cuisineNo = ?, mealName = ?, price = ?, maxCount = ? where mealNo = ?")) {
+			pst.setObject(1, cbMenu.getSelectedIndex() + 1);
+			pst.setObject(2, tfMenuName.getText());
+			pst.setObject(3, cbPrice.getSelectedItem());
+			pst.setObject(4, cbAmount.getSelectedItem());
+			pst.setObject(5, UpdateMenu.mealNo);
+
+			pst.executeUpdate();
+
+			informationMsg("메뉴가 수정되었습니다.");
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
 	}
 }
