@@ -18,7 +18,6 @@ public class Dijkstra_q {
 
 		@Override
 		public int compareTo(Edge o) {
-			// TODO Auto-generated method stub
 			return Integer.compare(this.weight, o.weight);
 		}
 
