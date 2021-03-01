@@ -47,7 +47,6 @@ public class TicketForm extends BaseFrame {
 		addWindowListener(new WindowAdapter() {
 			public void windowClosed(WindowEvent e) {
 //				if (e.get) {
-// TODO: 꺼질 떄 작업					
 //				}
 			};
 		});
