@@ -48,7 +48,6 @@ public class PayLookUpForm extends BaseFrame {
 	}
 
 	public void clickLookUp() {
-		// TODO: 조회 메서드 만들기
 		model.setRowCount(0);
 		try {
 			ResultSet rs = statement.executeQuery(
