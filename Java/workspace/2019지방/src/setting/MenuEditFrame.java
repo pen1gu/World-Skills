@@ -25,7 +25,7 @@ public class MenuEditFrame extends BaseFrame {
 	JComboBox<String> cbGroup = new JComboBox<>("전체,음료,푸드,상품".split(","));
 	JTextField tfSearch = new JTextField(20);
 	MenuPanel menuPanel = new MenuPanel("사진선택");
-	DefaultTableModel model = new DefaultTableModel("n,분류,메뉴명,찾기".split(","),0);
+	DefaultTableModel model = new DefaultTableModel("n,분류,메뉴명,찾기".split(","), 0);
 	JTable table = new JTable(model);
 
 	public MenuEditFrame() {
@@ -146,13 +146,14 @@ public class MenuEditFrame extends BaseFrame {
 			e1.printStackTrace();
 		}
 
-		try (var pst = connection.prepareStatement("UPDATE menu SET m_group = ?, m_name = ?, m_price = ? WHERE m_no = ?")) {
+		try (var pst = connection
+				.prepareStatement("UPDATE menu SET m_group = ?, m_name = ?, m_price = ? WHERE m_no = ?")) {
 
 			pst.setObject(1, menuPanel.cbGroup.getSelectedItem());
 			pst.setObject(2, menuName);
 			pst.setObject(3, price);
 			pst.setObject(4, model.getValueAt(row, 0));
-			
+
 			pst.execute();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -164,14 +165,13 @@ public class MenuEditFrame extends BaseFrame {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
 
 		informationMessage("수정되었습니다.");
 
 		clear();
 		clickSearch(null);
 
-	}	
+	}
 
 	private void selectTableRow() {
 		int row = table.getSelectedRow();
