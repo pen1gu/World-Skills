@@ -39,7 +39,7 @@ public class SignUpFrame extends BaseFrame {
 
         Calendar calendar = Calendar.getInstance();
         cbYear.addItem(null);
-        for (int i = 1940; i <= calendar.get(Calendar.YEAR); i++) {
+        for (int i = 1900; i <= calendar.get(Calendar.YEAR); i++) {
             cbYear.addItem(i);
         }
 
