@@ -26,6 +26,8 @@ public class MainFrame extends BaseFrame {
 
     MainFrame() {
         super(700, 600, "STARBOX");
+        setLayout(null);
+        
         JPanel northPanel = new JPanel(new BorderLayout());
         JPanel north_south = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JPanel westPanel = createComponent(new JPanel(new FlowLayout()), 55, 0);
@@ -46,7 +48,7 @@ public class MainFrame extends BaseFrame {
 
         JScrollPane jScrollPane = createComponent(new JScrollPane(menuPanel), 590, 480);
 
-
+        //TODO: 안보이는 현상 제거
         JPanel detailCenter = createComponent(new JPanel(null), 310, 170);
         JPanel detailBottom = new JPanel();
 
@@ -243,34 +245,34 @@ public class MainFrame extends BaseFrame {
                     if (group.equals("상품") == false) {
                         cbSize.addItem("M");
                         cbSize.addItem("L");
-                    }
-                    tfAmount.setText("" + getAmount());
-                }
-            });
-            lbImg.setBorder(new LineBorder(Color.black));
-            add(lbImg);
-            add(lbText, BorderLayout.SOUTH);
-        }
-    }
+					}
+					tfAmount.setText("" + getAmount());
+				}
+			});
+			lbImg.setBorder(new LineBorder(Color.black));
+			add(lbImg);
+			add(lbText, BorderLayout.SOUTH);
+		}
+	}
 
-    private int getAmount() {
-        int price = Integer.parseInt(tfPrice.getText());
-        int count = (Integer) cbCount.getSelectedItem();
+	private int getAmount() {
+		int price = Integer.parseInt(tfPrice.getText());
+		int count = (Integer) cbCount.getSelectedItem();
 
-        if (cbSize.getSelectedIndex() == 1) {
-            price += 1000;
-        }
+		if (cbSize.getSelectedIndex() == 1) {
+			price += 1000;
+		}
 
-        float discount = 0;
+		float discount = 0;
 
-        if (userGrade.equals("Bronze")) {
-            discount = 0.03f;
-        } else if (userGrade.equals("silver")) {
-            discount = 0.05f;
-        } else if (userGrade.equals("Gold")) {
-            discount = 0.1f;
-        }
+		if (userGrade.equals("Bronze")) {
+			discount = 0.03f;
+		} else if (userGrade.equals("silver")) {
+			discount = 0.05f;
+		} else if (userGrade.equals("Gold")) {
+			discount = 0.1f;
+		}
 
-        return (int) ((price * count) * (1f - discount));
-    }
+		return (int) ((price * count) * (1f - discount));
+	}
 }

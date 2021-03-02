@@ -6,14 +6,14 @@ import java.sql.Statement;
 
 public class Setting {
 
-	static Connection con;
-	static Statement stmt;
+	static Connection connection;
+	static Statement statement;
 
 	static {
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost?&serverTimezone=UTC&allowLoadLocalInfile=true",
+			connection = DriverManager.getConnection("jdbc:mysql://localhost?&serverTimezone=UTC&allowLoadLocalInfile=true",
 					"root", "1234");
-			stmt = con.createStatement();
+			statement = connection.createStatement();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -21,11 +21,11 @@ public class Setting {
 
 	public static void main(String[] args) throws Exception {
 
-		// µðºñ »ý¼º
+		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		execute("drop database if exists `hospital`;");
 		execute("CREATE SCHEMA IF NOT EXISTS `hospital` DEFAULT CHARACTER SET utf8 ;");
 
-		// Å×ÀÌºí
+		// ï¿½ï¿½ï¿½Ìºï¿½
 		execute("CREATE TABLE IF NOT EXISTS `hospital`.`examination` (\r\n"
 				+ "  `e_no` INT(11) NOT NULL AUTO_INCREMENT,\r\n" + "  `e_name` VARCHAR(10) NULL DEFAULT NULL,\r\n"
 				+ "  PRIMARY KEY (`e_no`))\r\n" + "ENGINE = InnoDB\r\n" + "DEFAULT CHARACTER SET = utf8;");
@@ -76,7 +76,7 @@ public class Setting {
 
 		execute("use hospital");
 
-		// À¯Àú »ý¼º
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		execute("drop user if exists 'user'@'%';");
 		execute("create user 'user'@'%' identified by '1234';");
 		execute("grant select, delete, insert, update on `hospital`.* to 'user'@'%';");
@@ -87,15 +87,15 @@ public class Setting {
 
 		for (int i = 0; i < list.length; i++) {
 			execute("load data local infile './/Datafiles/" + list[i] + ".txt' into table " + list[i]
-					+ " fields terminated  by '\t'" + " lines terminated  by '\n'" + " ignore i1 lines");
+					+ " fields terminated  by '\t'" + " lines terminated  by '\n'" + " ignore 1 lines");
 		}
 
-		System.out.println("¿Ï·á");
+		System.out.println("ì™„ì„±");
 	}
 
 	private static void execute(String sql) {
 		try {
-			stmt.execute(sql);
+			statement.execute(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

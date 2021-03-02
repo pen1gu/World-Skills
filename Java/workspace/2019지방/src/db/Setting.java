@@ -84,7 +84,7 @@ public class Setting {
                     " fields terminated by '\t' lines terminated by '\n' ignore 1 lines");
         }
 
-        JOptionPane.showMessageDialog(null, "¿Ï·áµÇ¾ú½À´Ï´Ù.");
+        JOptionPane.showMessageDialog(null, "ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤.");
     }
 
     public static void execute(String sql) {

@@ -43,7 +43,7 @@ public class MenuEditFrame extends BaseFrame {
 				selectTableRow();
 			}
 		});
-
+		// TODO : 미클릭 시 이벤트 제거
 		table.removeColumn(table.getColumn("n"));
 		table.getColumnModel().getColumn(1).setPreferredWidth(180);
 		table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);

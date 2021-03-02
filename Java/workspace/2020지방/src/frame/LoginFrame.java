@@ -20,22 +20,22 @@ public class LoginFrame extends BaseFrame {
 	JPasswordField pwf = setComp(new JPasswordField(), 65, 35, 150, 20);
 
 	public LoginFrame() {
-		super(320, 190, "·Î±×ÀÎ", 2);
+		super(320, 190, "ï¿½Î±ï¿½ï¿½ï¿½", 2);
 		
 		var cp = setComp(new JPanel(null), 320, 100);
 		var bp = setComp(new JPanel(new FlowLayout(FlowLayout.RIGHT)), w-100, 40);
 
-		add(setComp(setlabel(new JLabel("º´¿ø¿¹¾à½Ã½ºÅÛ", 0), new Font("±¼¸²", 1, 24)), 0, 40), BorderLayout.NORTH);
+		add(setComp(setlabel(new JLabel("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã½ï¿½ï¿½ï¿½", 0), new Font("ï¿½ï¿½ï¿½ï¿½", 1, 24)), 0, 40), BorderLayout.NORTH);
 
-		cp.add(setComp(setlabel(new JLabel("ID :", 4), new Font("¸¼Àº°íµñ", 1, 12)), 0, 5, 60, 20));
-		cp.add(setComp(setlabel(new JLabel("PW :", 4), new Font("¸¼Àº°íµñ", 1, 12)), 0,35, 60, 20));
+		cp.add(setComp(setlabel(new JLabel("ID :", 4), new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 1, 12)), 0, 5, 60, 20));
+		cp.add(setComp(setlabel(new JLabel("PW :", 4), new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 1, 12)), 0,35, 60, 20));
 		cp.add(idf);
 		cp.add(pwf);
-		cp.add(setComp(setBtnM("·Î±×ÀÎ", e->clickLogin(),Color.black),220,0, 70, 70));
+		cp.add(setComp(setBtnM("", e->clickLogin(),Color.black),220,0, 70, 70));
 		
 		
-		bp.add(setBtn("È¸¿ø°¡ÀÔ", e->openFrame(new SignUPFrame())));
-		bp.add(setBtn("Á¾·á", e->dispose()));
+		bp.add(setBtn("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", e->openFrame(new SignUPFrame())));
+		bp.add(setBtn("ï¿½ï¿½ï¿½ï¿½", e->dispose()));
 		bp.setBorder(BorderFactory.createEmptyBorder(0,0,0,15));
 		
 		add(cp, BorderLayout.CENTER);      
@@ -47,7 +47,7 @@ public class LoginFrame extends BaseFrame {
 		String pw = pwf.getText();
 		
 		if (id.isEmpty() || pw.isEmpty()) {
-			eMsg("ºóÄ­ÀÌ Á¸ÀçÇÕ´Ï´Ù");
+			eMsg("ï¿½ï¿½Ä­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½");
 			return;
 		}
 		
@@ -60,7 +60,7 @@ public class LoginFrame extends BaseFrame {
 				userNo = rs.getInt(1);
 				openFrame(new MainFrame());
 			}else {
-				eMsg("È¸¿øÁ¤º¸°¡ Æ²¸³´Ï´Ù. ´Ù½ÃÀÔ·ÂÇØÁÖ¼¼¿ä.");
+				eMsg("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Æ²ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

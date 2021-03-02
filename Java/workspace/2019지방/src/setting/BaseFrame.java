@@ -28,12 +28,12 @@ public class BaseFrame extends JFrame {
 			statement = connection.createStatement();
 		} catch (SQLException throwables) {
 			throwables.printStackTrace();
-			}
-	
-			userName = "이기민";
-			userNo = 1;
-			userGrade = "일반";
-			userPoint = 14210;
+		}
+
+		userName = "이기민";
+		userNo = 1;
+		userGrade = "일반";
+		userPoint = 14210;
 	}
 
 	public BaseFrame(int width, int height, String title) {
